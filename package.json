@@ -1,9 +1,10 @@
 {
   "name": "@adam-sv/arc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Project ADAM (https://acubed.airbus.com/projects/adam/)",
   "license": "MIT",
-  "homepage": "https://github.com/adam-sv/arc",
+  "homepage": "https://acubed.airbus.com/projects/adam/",
+  "repository": "https://github.com/adam-sv/arc",
   "description": "React Component Library powered by TypeScript. Created by Project ADAM, at Acubed - Airbus' Silicon Valley innovation center",
   "module": "dist/arc.esm.js",
   "main": "dist/index.js",

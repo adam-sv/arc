@@ -4,9 +4,18 @@ ARC (ADAM React Components) is a React component library built with TypeScript. 
 
 ## Usage
 
-### From npmjs.org
+### From https://registry.npmjs.org/
 
-We are working to have this published on npmjs.org or yarn's registry.
+We have published ARC to the public NPM under the @adam-sv organization.
+
+If you have configured a different registry, you can point the @adam-sv scope or the local folder's scope to public NPM via:
+
+```bash
+# Set local npm config
+npm config set registry https://registry.npmjs.org/
+# Set @adam-sv
+npm config set @adam-sv:registry https://registry.npmjs.org/
+```
 
 ### CSS
 
@@ -23,16 +32,10 @@ import { Input } from '@adam-sv/arc';
 import type { IInputProps } from '@adam-sv/arc';
 ```
 
-## Adding a new component
-
-For a new component to be maximally usable, a few things must happen. Read the TypeScript conventions below. Then, once you have an `index.tsx` file with 
-
 ## Developing
 
-Please note we have an `.npmrc` file which is making reference to a variable, `NPM_TOKEN`. It is not required for the actual installation, so you can fill it in as follows:
-
 ```
-NPM_TOKEN="" yarn install
+yarn install
 yarn storybook
 ```
 
@@ -138,17 +141,3 @@ export interface IFancyComponentProps {
 ```
 
 _Editor's Note: I ran into this case once in the `SegmentedImage`, but then I completely scrapped the approach I had taken. I suggest if you end up in this position, you consider if you should do the same._
-
-## Publishing
-
-First, run the `./generatePublicRelease.sh` script. Note that it can be passed a target dir, or will default to `./release`:
-
-```bash
-./generatePublicRelease.sh --target-dir /path/to/public-arc-repo-folder
-```
-
-This will copy all the source files, all build files, all config files, package.json, all storybook files, the LICENSE, generate & copy the THIRD_PARTY.md file, etc..
-
-Therefore running it with the public repo's folder as a target should copy all the necessary updates into said folder. Delete everything except the `.git` subtree before you run this script for full determinism.
-
-No special permissions should be required for this script, unlike executing a publish, which should only be ran via CI/CD.
