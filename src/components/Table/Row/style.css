@@ -1,0 +1,12 @@
+.ArcTable-Row {
+  border-bottom: var(--border);
+  background: var(--cell-background);
+
+  &:nth-child(2n) {
+    background: var(--cell-alternating-background);
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+}

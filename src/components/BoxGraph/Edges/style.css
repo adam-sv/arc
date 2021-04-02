@@ -1,0 +1,5 @@
+.ArcBoxGraph-Edges {
+  position: relative;
+  pointer-events: none;
+  z-index: 10;
+}

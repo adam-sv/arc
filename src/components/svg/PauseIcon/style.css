@@ -1,0 +1,7 @@
+.PauseIcon {
+  stroke: var(--icon-color);
+  stroke-width: 2;
+  padding: 0.5rem;
+  border-radius: 100%;
+  width: 6.5rem;
+}

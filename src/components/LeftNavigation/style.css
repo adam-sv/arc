@@ -1,0 +1,203 @@
+/* 
+available variables
+
+--LeftNavigation-background-color
+--LeftNavigation-toggle-background-color
+--LeftNavigation-toggle-hover-background-color
+--LeftNavigation-toggle-border-color
+--LeftNavigation-toggle-box-shadow
+--LeftNavigation-toggle-hover-border-color
+--LeftNavigation-adam-logo-color-1
+--LeftNavigation-adam-logo-color-2
+--LeftNavigation-link-color
+--LeftNavigation-hover-indicator-color
+--LeftNavigation-link-selected-color
+ */
+
+.LeftNavigation {
+  /* internal variables */
+  --i-background-color: var(--LeftNavigation-background-color, var(--black));
+  --i-toggle-background-color: var(
+    --LeftNavigation-toggle-background-color,
+    var(--i-background-color)
+  );
+  --i-toggle-border-color: var(
+    --LeftNavigation-toggle-border-color,
+    var(--grey-2)
+  );
+  --i-toggle-box-shadow: var(
+    --LeftNavigation-toggle-box-shadow,
+    0 0 0.5em var(--black)
+  );
+  --i-toggle-hover-background-color: var(
+    --LeftNavigation-toggle-hover-background-color,
+    var(--i-background-color)
+  );
+  --i-toggle-hover-border-color: var(
+    --LeftNavigation-toggle-hover-border-color,
+    var(--i-toggle-border-color)
+  );
+  --i-toggle-hover-box-shadow: var(
+    --LeftNavigation-toggle-hover-box-shadow,
+    var(--i-toggle-box-shadow)
+  );
+  --i-adam-logo-color-1: var(--LeftNavigation-adam-logo-color-1, var(--white));
+  --i-adam-logo-color-2: var(--LeftNavigation-adam-logo-color-2, var(--blue));
+  --i-link-color: var(--LeftNavigation-link-color, var(--white));
+  --i-hover-indicator-color: var(
+    --LeftNavigation-hover-indicator-color,
+    var(--grey-4)
+  );
+  --i-link-selected-color: var(
+    --LeftNavigation-link-selected-color,
+    var(--yellow)
+  );
+
+  background-color: var(--i-background-color);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-auto-flow: row;
+  align-items: center;
+  justify-items: start;
+  font-family: 'Open Sans', sans-serif;
+  user-select: none;
+
+  &-top {
+    align-self: start;
+    padding: 2rem;
+  }
+
+  &-bottomLinks {
+    padding-bottom: 2rem;
+  }
+
+  &-topContent {
+    width: 100%;
+    height: fit-content;
+    color: var(--i-link-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-toggle {
+    cursor: pointer;
+    position: absolute;
+    bottom: 4rem;
+    right: -0.8rem;
+    height: 5.5rem;
+    width: 1.4rem;
+    border-radius: 1rem;
+    background-color: var(--i-toggle-background-color);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--i-toggle-border-color);
+    box-shadow: var(--i-toggle-box-shadow);
+
+    &:hover {
+      background-color: var(--i-toggle-hover-background-color);
+      border-color: var(--i-toggle-hover-border-color);
+      box-shadow: var(--i-toggle-hover-box-shadow);
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 80%;
+      top: 10%;
+      bottom: 10%;
+      background-color: var(--i-toggle-border-color);
+    }
+
+    &::before {
+      left: 0.3rem;
+    }
+
+    &::after {
+      right: 0.3rem;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      background-color: var(--i-toggle-hover-border-color);
+    }
+  }
+
+  &-adamIcon {
+    width: 2.2rem;
+    --icon-color: var(--i-adam-logo-color-1);
+    --icon-color-2: var(--i-adam-logo-color-2);
+  }
+
+  &-links,
+  &-bottomLinks {
+    display: grid;
+    grid-auto-flow: row;
+    justify-items: stretch;
+    grid-gap: calc(4rem + 2vh);
+  }
+
+  &-link {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.245em;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--i-link-color);
+
+    &Icon {
+      --icon-color: var(--i-link-color);
+      display: block;
+      margin: auto;
+      width: 2rem;
+    }
+
+    &Text {
+      display: none;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .is-open & {
+      justify-content: start;
+      &Text {
+        display: inline;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0.25em;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    &:hover::before,
+    &:hover &Icon {
+      background-color: var(--i-hover-indicator-color);
+    }
+
+    &.is-selected &Icon {
+      --icon-color: var(--i-link-selected-color);
+    }
+
+    &.is-selected &Text {
+      color: var(--i-link-selected-color);
+    }
+
+    &.is-selected::before {
+      background-color: var(--i-link-selected-color);
+    }
+  }
+}

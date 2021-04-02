@@ -1,0 +1,99 @@
+/* Variables */
+.ArcModal,
+.ArcModal.ArcSizeDefault,
+.ArcSizeDefault .ArcModal {
+  --ArcModal-minHeight: var(--ARC-sizing-displayElement-height);
+  --ArcModal-fontSize: var(--ARC-sizing-fontSize);
+  --ArcModal-labelSize: var(--ARC-sizing-labelSize);
+  --ArcModal-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcModal-verticalSpace: var(--ARC-sizing-verticalSpace);
+}
+
+.ArcModal.ArcSizeCompact,
+.ArcSizeCompact .ArcModal {
+  --ArcModal-minHeight: var(--ARC-sizing-compact-displayElement-height);
+  --ArcModal-fontSize: var(--ARC-sizing-compact-fontSize);
+  --ArcModal-labelSize: var(--ARC-sizing-compact-labelSize);
+  --ArcModal-horizontalSpace: var(--ARC-sizing-compact-horizontalSpace);
+  --ArcModal-verticalSpace: var(--ARC-sizing-compact-verticalSpace);
+}
+
+.ArcModal.ArcSizeLarge,
+.ArcSizeLarge .ArcModal {
+  --ArcModal-minHeight: var(--ARC-sizing-large-displayElement-height);
+  --ArcModal-fontSize: var(--ARC-sizing-large-fontSize);
+  --ArcModal-labelSize: var(--ARC-sizing-large-labelSize);
+  --ArcModal-horizontalSpace: var(--ARC-sizing-large-horizontalSpace);
+  --ArcModal-verticalSpace: var(--ARC-sizing-large-verticalSpace);
+}
+
+.ArcModal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  padding: var(--ArcModal-verticalSpace) var(--ArcModal-horizontalSpace);
+
+  /* animations */
+  opacity: 1;
+
+  &.entering {
+    animation-name: fade-in;
+    animation-duration: 300ms;
+  }
+
+  &.exiting {
+    animation-name: fade-in;
+    animation-duration: 300ms;
+    animation-direction: reverse;
+
+    .ArcModal-layer-content {
+      animation-name: fade-in;
+      animation-duration: 200ms;
+      animation-direction: reverse;
+    }
+  }
+
+  &.exiting {
+    opacity: 0;
+
+    .ArcModal-layer-content {
+      opacity: 0;
+    }
+  }
+
+  &.exited {
+    opacity: 0;
+    display: none;
+  }
+
+  &-layer-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(var(--background-rgb), 0.65);
+    z-index: -1;
+  }
+
+  &-layer-content {
+    background: var(--surface);
+    border: 1px solid var(--color-border-dark);
+    border-radius: 4px;
+    margin: auto;
+    z-index: 1;
+    padding: var(--ArcModal-verticalSpace) var(--ArcModal-horizontalSpace);
+  }
+
+  &-helper-componentHidden {
+    display: none;
+  }
+}

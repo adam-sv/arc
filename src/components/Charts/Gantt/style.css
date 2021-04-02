@@ -1,0 +1,56 @@
+.ArcGantt {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+  stroke-width: 1px;
+  stroke: var(--grey-2);
+
+  &-border {
+    fill: transparent;
+  }
+
+  &-yAxis text {
+    font-size: 12px;
+    stroke: transparent;
+    dominant-baseline: middle;
+    text-anchor: middle;
+    fill: var(--grey-4);
+  }
+
+  &-xAxis {
+    line {
+      stroke: var(--grey-2);
+      stroke-width: 1px;
+      fill: transparent;
+    }
+
+    text {
+      font-size: 8px;
+      fill: var(--grey-4);
+      stroke: none;
+      text-anchor: end;
+      dominant-baseline: middle;
+      transform-box: fill-box;
+      transform-origin: right center;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &-data rect {
+    fill: rgba(var(--primary-rgb), 0.3);
+    stroke: var(--grey-3);
+
+    &.is-hoverable {
+      stroke: var(--grey-4);
+      cursor: pointer;
+
+      &:hover {
+        stroke-width: 2px;
+      }
+    }
+  }
+}

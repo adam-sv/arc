@@ -1,0 +1,112 @@
+/* Variables */
+.ArcTree,
+.ArcTree.ArcSizeDefault,
+.ArcSizeDefault .ArcTree {
+  --ArcTree-minHeight: var(--ARC-sizing-displayElement-height);
+  --ArcTree-fontSize: var(--ARC-sizing-fontSize);
+  --ArcTree-labelSize: var(--ARC-sizing-labelSize);
+  --ArcTree-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcTree-verticalSpace: var(--ARC-sizing-verticalSpace);
+}
+
+.ArcTree.ArcSizeCompact,
+.ArcSizeCompact .ArcTree {
+  --ArcTree-minHeight: var(--ARC-sizing-compact-displayElement-height);
+  --ArcTree-fontSize: var(--ARC-sizing-compact-fontSize);
+  --ArcTree-labelSize: var(--ARC-sizing-compact-labelSize);
+  --ArcTree-horizontalSpace: var(--ARC-sizing-compact-horizontalSpace);
+  --ArcTree-verticalSpace: var(--ARC-sizing-compact-verticalSpace);
+}
+
+.ArcTree.ArcSizeLarge,
+.ArcSizeLarge .ArcTree {
+  --ArcTree-minHeight: var(--ARC-sizing-large-displayElement-height);
+  --ArcTree-fontSize: var(--ARC-sizing-large-fontSize);
+  --ArcTree-labelSize: var(--ARC-sizing-large-labelSize);
+  --ArcTree-horizontalSpace: var(--ARC-sizing-large-horizontalSpace);
+  --ArcTree-verticalSpace: var(--ARC-sizing-large-verticalSpace);
+}
+
+.ArcTree {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: var(--ArcTree-minHeight);
+  padding: var(--ArcTree-verticalSpace) var(--ArcTree-horizontalSpace);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+
+  &-Node {
+    flex: 0 0 fit-content;
+    font-size: var(--ArcTree-fontSize);
+    padding-top: var(--ArcTree-verticalSpace);
+    padding-left: var(--ArcTree-horizontalSpace);
+    border-radius: 4px;
+
+    &-leaf:hover {
+      cursor: pointer;
+      background: var(--grey-1);
+    }
+
+    &-selected:hover {
+      background: var(--primary-hover);
+    }
+
+    &-selected {
+      background: var(--primary);
+      color: var(--on-primary);
+
+      /* the dot that is the leafIcon default should be colored */
+      > .ArcTree-Node-content .ArcTree-Node-content-iconContainer-leafIcon {
+        background: var(--on-primary);
+      }
+    }
+
+    &.disabled {
+      color: rgba(var(--grey-5-rgb), 0.7);
+    }
+
+    &-content {
+      display: flex;
+      justify-content: flex-start;
+      padding-bottom: var(--ArcTree-verticalSpace);
+
+      &-iconContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 var(--ArcTree-horizontalSpace);
+        margin-left: calc(calc(-0.5 * var(--ArcTree-horizontalSpace)) + 1px);
+        margin-right: var(--ArcTree-horizontalSpace);
+
+        &-expansionIcon {
+          width: 0;
+          height: 0;
+          border-left: var(--ArcTree-horizontalSpace) solid var(--color-border-dark);
+          border-top: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
+          border-bottom: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
+          border-right: 0 solid transparent;
+          transform: rotate(0deg);
+          transition: 200ms;
+
+          &-expanded {
+            transform: rotate(90deg);
+            transition: 200ms;
+          }
+        }
+
+        &-leafIcon {
+          width: var(--ArcTree-horizontalSpace);
+          height: var(--ArcTree-horizontalSpace);
+          background: var(--color-border-dark);
+          border-radius: 100%;
+        }
+      }
+    }
+
+    & .ArcTree-Node-children {
+      border-left: 1px solid var(--color-border);
+      padding-left: var(--ArcTree-horizontalSpace);
+    }
+  }
+}

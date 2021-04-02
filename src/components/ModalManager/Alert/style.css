@@ -1,0 +1,23 @@
+.ArcAlertModal {
+  background-color: var(--theme-surface);
+  color: var(--theme-surface-contrast);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-width: 28rem;
+  max-width: 100%;
+  display: inline-grid;
+  grid-auto-flow: row;
+  gap: 2rem;
+  line-height: 1.25;
+  justify-content: center;
+}
+
+.ArcAlertModal-message {
+  display: block;
+  margin: auto;
+  max-width: 60rem;
+}
+
+.ArcAlertModal-buttonRow {
+  text-align: center;
+}

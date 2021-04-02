@@ -1,0 +1,5 @@
+.MenuList {
+  .MenuItem:not(:first-child) {
+    margin-top: -1px;
+  }
+}

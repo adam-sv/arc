@@ -1,0 +1,6 @@
+.container {
+  fill-rule: evenodd;
+  fill: var(--icon-color);
+  stroke-width: 0;
+  width: 2rem;
+}

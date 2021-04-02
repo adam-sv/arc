@@ -1,0 +1,18 @@
+.ArcCarousel-ExpansionOverlay {
+  --teal: #14da9e;
+}
+
+.ArcCarousel-ExpansionOverlay {
+  position: fixed;
+
+  .ArcCarousel-ExpansionOverlay-bg {
+    position: absolute;
+    border: 1px solid var(--teal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eaf1ff;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+}

@@ -1,0 +1,66 @@
+/* Variables */
+.ArcTreeBrowser,
+.ArcTreeBrowser.ArcSizeDefault,
+.ArcSizeDefault .ArcTreeBrowser {
+  --ArcTreeBrowser-minHeight: var(--ARC-sizing-displayElement-height);
+  --ArcTreeBrowser-fontSize: var(--ARC-sizing-fontSize);
+  --ArcTreeBrowser-labelSize: var(--ARC-sizing-labelSize);
+  --ArcTreeBrowser-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcTreeBrowser-verticalSpace: var(--ARC-sizing-verticalSpace);
+}
+
+.ArcTreeBrowser.ArcSizeCompact,
+.ArcSizeCompact .ArcTreeBrowser {
+  --ArcTreeBrowser-minHeight: var(--ARC-sizing-compact-displayElement-height);
+  --ArcTreeBrowser-fontSize: var(--ARC-sizing-compact-fontSize);
+  --ArcTreeBrowser-labelSize: var(--ARC-sizing-compact-labelSize);
+  --ArcTreeBrowser-horizontalSpace: var(--ARC-sizing-compact-horizontalSpace);
+  --ArcTreeBrowser-verticalSpace: var(--ARC-sizing-compact-verticalSpace);
+}
+
+.ArcTreeBrowser.ArcSizeLarge,
+.ArcSizeLarge .ArcTreeBrowser {
+  --ArcTreeBrowser-minHeight: var(--ARC-sizing-large-displayElement-height);
+  --ArcTreeBrowser-fontSize: var(--ARC-sizing-large-fontSize);
+  --ArcTreeBrowser-labelSize: var(--ARC-sizing-large-labelSize);
+  --ArcTreeBrowser-horizontalSpace: var(--ARC-sizing-large-horizontalSpace);
+  --ArcTreeBrowser-verticalSpace: var(--ARC-sizing-large-verticalSpace);
+}
+
+.ArcTreeBrowser .ArcTree {
+  border-left: none;
+  border-right: none;
+}
+
+.ArcTreeBrowser {
+  padding: var(--ArcTreeBrowser-verticalSpace) var(--ArcTreeBrowser-horizontalSpace);
+
+  .ArcInputSkeleton {
+    margin-bottom: -1px;
+    z-index: 100;
+  }
+
+  .ArcTree {
+    border-left: none;
+    border-right: none;
+  }
+
+  &-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 fit-content;
+    margin: var(--ArcTreeBrowser-verticalSpace) calc(-1 * var(--ArcTreeBrowser-horizontalSpace)) 0;
+
+    & .ArcButton {
+      font-size: calc(calc(var(--ArcTreeBrowser-fontSize) + var(--ArcTreeBrowser-labelSize)) / 2);
+      line-height: calc(calc(var(--ArcTreeBrowser-fontSize) + var(--ArcTreeBrowser-labelSize)) / 2);
+      margin: 0 calc(var(--ArcTreeBrowser-horizontalSpace) / 2);
+    }
+  }
+}
+
+.ArcModal .ArcTreeBrowser {
+  width: 500px;
+  max-width: 100vw;
+}

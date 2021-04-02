@@ -1,0 +1,60 @@
+.story {
+  background-color: var(--grey-1);
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 5em);
+  gap: 1em;
+  padding: 4em;
+  justify-content: center;
+}
+
+.cell {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 0.25em;
+  gap: 0;
+  padding: 1em;
+  cursor: default;
+  min-height: 5em;
+
+  .label {
+    font-size: 0;
+    color: var(--white);
+  }
+
+  .icon {
+    --icon-color: var(--nice-blue);
+    width: 1.5em;
+  }
+
+  .label,
+  .icon {
+    transition: inherit;
+    transition-delay: inherit;
+  }
+
+  &:hover {
+    transition: ease-out all 80ms;
+    background-color: var(--nice-blue);
+    margin: -1em -3em;
+    box-shadow: 0 0 0.5em var(--nice-blue);
+    position: sticky;
+    gap: 1em;
+
+    .icon {
+      --icon-color: var(--white);
+      width: 2.5em;
+    }
+
+    .label {
+      font-size: 1em;
+    }
+  }
+}

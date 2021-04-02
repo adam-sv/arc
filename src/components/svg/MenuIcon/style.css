@@ -1,0 +1,5 @@
+.MenuIcon {
+  stroke: var(--icon-color);
+  fill: var(--icon-color);
+  width: 2.7rem;
+}

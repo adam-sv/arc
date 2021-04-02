@@ -1,0 +1,30 @@
+.ArcNode {
+  font-family: var(--fonts);
+  fill: var(--surface);
+  stroke-width: 2px;
+  stroke: var(--grey-3);
+  text-align: center;
+  cursor: pointer;
+
+  text {
+    font-family: var(--fonts);
+    font-size: var(--ARC-sizing-labelSize);
+    text-anchor: middle;
+    stroke-width: 0.5px;
+    stroke: var(--on-surface);
+    fill: var(--on-surface);
+  }
+
+  .Port text {
+    font-size: calc(var(--ARC-sizing-labelSize) - 2px);
+    dominant-baseline: central;
+  }
+
+  .Ports-inputPorts .Port-text {
+    text-anchor: start;
+  }
+
+  .Ports-outputPorts .Port-text {
+    text-anchor: end;
+  }
+}

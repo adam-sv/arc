@@ -1,0 +1,43 @@
+.ArcCarousel-Section {
+  --title-block-height: 30px;
+}
+
+.ArcCarousel-Section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  .ArcCarousel-Section-title {
+    flex: 0 0 auto;
+    display: flex;
+    font-family: Lato;
+    font-size: 16px;
+    color: #919191;
+    align-items: center;
+    height: var(--title-block-height);
+  }
+
+  .ArcCarousel-Section-entries {
+    background: #d2dce6;
+    flex: 0 0 auto;
+    display: flex;
+    padding: 20px 0;
+  }
+
+  &.ArcCarousel-Section--spacer {
+    flex: 1 1 1px;
+
+    .ArcCarousel-Section-entries {
+      flex: 1 1 auto;
+    }
+  }
+
+  .ArcCarousel-Section-divider {
+    flex: 0 0 auto;
+    background: transparent;
+    display: flex;
+    width: 2px;
+    background: white;
+    margin: 0 20px;
+  }
+}

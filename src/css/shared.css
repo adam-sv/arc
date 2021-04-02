@@ -1,0 +1,41 @@
+/* sizing styles */
+/* ArcSizeDefault */
+:root {
+  --ARC-sizing-displayElement-height: 88px;
+  --ARC-sizing-inputElement-height: 44px;
+  --ARC-sizing-labelSize: 12px;
+  --ARC-sizing-fontSize: 14px;
+  --ARC-sizing-horizontalSpace: 8px;
+  --ARC-sizing-verticalSpace: 4px;
+  --fonts: Lato, sans-serif;
+}
+
+/* ArcSizeCompact */
+:root {
+  --ARC-sizing-compact-displayElement-height: 72px;
+  --ARC-sizing-compact-inputElement-height: 36px;
+  --ARC-sizing-compact-labelSize: 10px;
+  --ARC-sizing-compact-fontSize: 12px;
+  --ARC-sizing-compact-horizontalSpace: 5px;
+  --ARC-sizing-compact-verticalSpace: 3px;
+}
+
+/* ArcSizeLarge */
+:root {
+  --ARC-sizing-large-displayElement-height: 104px;
+  --ARC-sizing-large-inputElement-height: 52px;
+  --ARC-sizing-large-labelSize: 12px;
+  --ARC-sizing-large-fontSize: 16px;
+  --ARC-sizing-large-horizontalSpace: 12px;
+  --ARC-sizing-large-verticalSpace: 6px;
+}
+
+/* box-shadow styles */
+:root {
+  --ARC-boxShadow-element-focus: 0 2px 4px 0;
+  --ARC-boxShadow-fakeBorder:
+    1px 0 0 0 var(--color-border),
+    -1px 0 0 0 var(--color-border),
+    0 1px 0 0 var(--color-border),
+    0 -1px 0 0 var(--color-border);
+}

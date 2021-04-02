@@ -1,0 +1,13 @@
+.Node {
+  text.port-text {
+    dominant-baseline: hanging;
+
+    &.input-port-text {
+      text-anchor: start;
+    }
+
+    &.output-port-text {
+      text-anchor: end;
+    }
+  }
+}

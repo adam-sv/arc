@@ -1,0 +1,6 @@
+.purple-example {
+  --ApplicationBanner-background-color: var(--grey-1);
+  --ApplicationBanner-color: var(--grey-4);
+  --ApplicationBanner-logo-color: #9013fe;
+  --ApplicationBanner-temp-notification-color: var(--grey-4);
+}

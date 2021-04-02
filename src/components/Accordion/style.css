@@ -1,0 +1,71 @@
+.ArcAccordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: height 300ms;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-border);
+    transition: height 300ms;
+
+    .header {
+      flex: 0 0 auto;
+      height: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 12px 8px 0;
+      cursor: pointer;
+
+      .label {
+        flex: 1;
+      }
+
+      .ArcAccordion-Button {
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        margin-right: 8px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 100%;
+
+        background: white;
+        border: 2px solid var(--grey-2);
+        transform: rotate(0deg);
+        transition: 300ms;
+        cursor: s-resize;
+
+        .X line {
+          stroke: var(--grey-2);
+          stroke-width: 2px;
+        }
+
+        &.expanded {
+          cursor: n-resize;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .children {
+      overflow: hidden;
+      opacity: 1;
+      padding: 0 2px;
+      transition: height 300ms, opacity 150ms;
+      transition-delay: 0, 150ms;
+
+      &.collapsed {
+        opacity: 0;
+        transition: height 300ms, opacity 150ms;
+        transition-delay: 0, 0;
+      }
+    }
+  }
+}

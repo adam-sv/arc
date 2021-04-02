@@ -1,0 +1,10 @@
+.SegmentedImage-Story {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .ArcSegmentedImage {
+    width: 100%;
+    height: auto;
+  }
+}

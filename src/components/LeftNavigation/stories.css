@@ -1,0 +1,14 @@
+.purple-example {
+  --LeftNavigation-background-color: var(--grey-1);
+  --LeftNavigation-toggle-background-color: var(--grey-2);
+  --LeftNavigation-toggle-border-color: transparent;
+  --LeftNavigation-toggle-box-shadow: 0 0 0.25em var(--grey-3);
+  --LeftNavigation-toggle-hover-background-color: #9013fe;
+  --LeftNavigation-toggle-hover-border-color: #9013fe;
+  --LeftNavigation-toggle-hover-box-shadow: 0 0 0.25em #9013fe;
+  --LeftNavigation-adam-logo-color-1: #9013fe;
+  --LeftNavigation-adam-logo-color-2: #9013fe;
+  --LeftNavigation-link-color: var(--grey-4);
+  --LeftNavigation-link-selected-color: #9013fe;
+  --LeftNavigation-hover-indicator-color: var(--grey-2);
+}

@@ -1,0 +1,86 @@
+/* DEFINE COLORS
+ * see config/webpack.config.js > require('postcss-mixins') > themify(mixin, stringArgs)
+ * for each color, we want multiple versions for hover, disabled, or custom opacity states
+ * we accomplish this with the `themify` mixin
+ * @mixin themify dark-indigo #111e6c;
+ * writes the following, some of which is later again changed by PostCSS into RGB(x, y, z):
+ body {
+   --dark-indigo: #111e6c;
+   --dark-indigo-hover: color(#111e6c shade(23%)); // compiles to a slightly darker color in RGB
+   --dark-indigo-disabled: color(#111e6c a(40%));  // compiles down to a slightly transparent color in RGBA
+   --dark-indigo-rgb: color(#111e6c a(100%));      // compiles directly to the hex code in RGB
+ }
+ */
+@mixin themify dark-indigo #111e6c;
+@mixin themify dusk #4c516e;
+@mixin themify nice-blue #0f52ba;
+@mixin themify seafoam-blue #26d1c1;
+@mixin themify robins-egg #61e2fa;
+@mixin themify bluish-green #26d1c1;
+@mixin themify orange #f87304;
+@mixin themify red #d44205;
+@mixin themify yellow #f8e71c;
+@mixin themify white #ffffff;
+@mixin themify black #000000;
+@mixin themify blue #017fff;
+
+/* ASSIGN COLORS TO THE THEME
+ * now we want to map each color we generated to the theme
+ * @mixin mapToTheme primary nice-blue
+ * writes the following
+ body {
+   --primary: --nice-blue;
+   --primary-hover: --nice-blue-hover;
+   --primary-disabled: --nice-blue-disabled;
+   --primary-rgb: --nice-blue-rgb;
+ }
+ * so now the developer has access to all these variants in the generic theme
+ * which should be their only color interface
+ */
+@mixin mapToTheme primary nice-blue;
+@mixin mapToTheme secondary dark-indigo;
+@mixin mapToTheme tertiary seafoam-blue;
+@mixin mapToTheme error red;
+@mixin mapToTheme warning orange;
+
+/* ASSIGN GREYS
+ * greys are hard to name, low-contrast is verbose, etc
+ * this mixin generates:
+body {
+  --grey-0: #ffffff;
+  --grey-0-hover: color(#ffffff shade(23%));
+  --grey-1: #f6f8fa;
+  --grey-1-hover: color(#f6f8fa shade(23%));
+  ...
+}
+ * for however many greys are listed here. In code, I only rely on grey-0 to grey-3
+ */
+@mixin greys #ffffff #f6f8fa #e1e3e5 #9a9d9e #5b5b5b #414345;
+
+/* SOME MANUAL WIRING
+ * As far as I can tell, there's no way to set these on-text and other variables automatically
+ * because I don't see how we could compute that contrast
+ */
+:root {
+  /* layout */
+  --background: var(--grey-1);
+  --background-hover: var(--grey-1-hover);
+  --background-rgb: var(--grey-1-rgb);
+  --surface: var(--grey-0);
+  --surface-hover: var(--grey-0-hover);
+  --surface-rgb: var(--grey-0-rgb);
+  --color-border: var(--grey-2);
+  --color-border-rgb: var(--grey-2-rgb);
+  --color-border-dark: var(--grey-3);
+  --color-border-dark-rgb: var(--grey-3-rgb);
+
+  /* on colors */
+  --on-primary: var(--grey-0);
+  --on-primary-variant: var(--grey-0);
+  --on-secondary: var(--grey-0);
+  --on-tertiary: var(--grey-0);
+  --on-surface: var(--grey-5);
+  --on-background: var(--grey-5);
+  --on-error: var(--grey-0);
+  --on-warning: var(--grey-0);
+}

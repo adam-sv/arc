@@ -1,0 +1,20 @@
+.ArcBoxGraph-ExpandedNode {
+  .ArcBoxGraph-ExpandedNode-children {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    z-index: 10;
+
+    .ArcBoxGraph-ExpandedNode-children-column {
+      flex: 1 1 auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .ArcBoxGraph-Node {
+      flex: 1 1 auto;
+    }
+  }
+}

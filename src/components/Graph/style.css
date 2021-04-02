@@ -1,0 +1,61 @@
+@keyframes dashoffset {
+  0% { stroke-dashoffset: 0px; }
+  100% { stroke-dashoffset: 10000px; }
+}
+
+.ArcGraph {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 40px;
+  box-shadow: var(--ARC-boxShadow-fakeBorder);
+  background: var(--surface);
+
+  .ArcSVGContainer {
+    margin: -1px;
+  }
+
+  .loading-container {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .graph-container {
+    position: absolute;
+
+    .graph {
+      box-shadow: 0 0 0 1px var(--color-border);
+      vertical-align: bottom;
+
+      .grid {
+        pointer-events: none;
+        stroke-width: 2px;
+        stroke: #b7b7b7;
+        opacity: 0.14;
+      }
+    }
+  }
+}
+
+.MenuModal {
+  padding: 0;
+  box-shadow: 0 2px 8px 0 rgba(37, 38, 94, 0.4);
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Icon {
+      max-height: 16px;
+      max-width: 16px;
+      height: auto;
+      width: auto;
+      color: transparent;
+    }
+  }
+}

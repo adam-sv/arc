@@ -1,0 +1,10 @@
+.ArcBoxGraph-CollapsedNode {
+  display: flex;
+
+  .ArcBoxGraph-CollapsedNode-internal-content {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    display: flex;
+    z-index: 10;
+  }
+}

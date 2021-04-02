@@ -1,0 +1,4 @@
+.container {
+  fill: var(--icon-color);
+  width: 10em;
+}

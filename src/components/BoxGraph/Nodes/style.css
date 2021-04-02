@@ -1,0 +1,11 @@
+.ArcBoxGraph-Nodes {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: white;
+
+  .ArcBoxGraph-Node {
+    flex: 1 1 auto;
+  }
+}

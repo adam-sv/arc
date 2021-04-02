@@ -1,0 +1,70 @@
+/* Variables */
+.ArcStretchyPointer,
+.ArcStretchyPointer.ArcSizeDefault,
+.ArcSizeDefault .ArcStretchyPointer {
+  --ArcStretchyPointer-fontSize: var(--ARC-sizing-fontSize);
+  --ArcStretchyPointer-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcStretchyPointer-verticalSpace: var(--ARC-sizing-verticalSpace);
+}
+
+.ArcStretchyPointer.ArcSizeCompact,
+.ArcSizeCompact .ArcStretchyPointer {
+  --ArcStretchyPointer-fontSize: var(--ARC-sizing-compact-fontSize);
+  --ArcStretchyPointer-horizontalSpace: var(
+    --ARC-sizing-compact-horizontalSpace
+  );
+  --ArcStretchyPointer-verticalSpace: var(--ARC-sizing-compact-verticalSpace);
+}
+
+.ArcStretchyPointer.ArcSizeLarge,
+.ArcSizeLarge .ArcStretchyPointer {
+  --ArcStretchyPointer-fontSize: var(--ARC-sizing-large-fontSize);
+  --ArcStretchyPointer-horizontalSpace: var(--ARC-sizing-large-horizontalSpace);
+  --ArcStretchyPointer-verticalSpace: var(--ARC-sizing-large-verticalSpace);
+}
+
+.ArcStretchyPointer {
+  --button-background-color: #f8e71c;
+  --gap: 2ch;
+  --overflow-amount: 1em;
+}
+
+.ArcStretchyPointer {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  cursor: pointer;
+  font-family: Lato;
+  font-weight: bold;
+  font-size: var(--ArcStretchyPointer-fontSize, 1.25em);
+  color: var(--black);
+  text-align: center;
+  background-color: var(--button-background-color, var(--bluish-green));
+  padding: calc(2 * var(--ArcStretchyPointer-verticalSpace))
+    var(--ArcStretchyPointer-horizontalSpace);
+  /* padding: var(--padding, 0.25em 1em); */
+  color: var(--button-color, var(--black));
+  text-transform: capitalize;
+  box-shadow: var(--box-shadow, 0 0.1em 0.1em hsla(0, 0%, 0%, 0.1));
+  border: var(--button-border, none);
+  border-radius: var(--button-border-radius, 100vw);
+  text-decoration: var(--text-decoration, none);
+  transition: ease all 1s;
+  user-select: none;
+
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: var(--gap);
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &.is-expanded {
+    width: calc(100% + var(--overflow-amount, 0));
+    gap: calc(var(--gap) + var(--overflow-amount, 0));
+  }
+
+  &.is-expanded.is-left {
+    margin-left: calc(-1 * var(--overflow-amount, 0));
+  }
+}

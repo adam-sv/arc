@@ -1,0 +1,24 @@
+.ArcBoxGraph {
+  --min-height: 400px;
+  display: flex;
+  min-height: var(--min-height);
+
+  .ArcBoxGraph-viewport {
+    flex: 1 1 auto;
+    overflow: scroll;
+    display: flex;
+    position: relative;
+  }
+
+  .ArcBoxGraph-Nodes {
+    flex: 1 1 auto;
+  }
+
+  .ArcBoxGraph-Edges {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

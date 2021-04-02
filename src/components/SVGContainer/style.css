@@ -1,0 +1,6 @@
+.ArcSVGContainer {
+  flex: 1 1 1px;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}

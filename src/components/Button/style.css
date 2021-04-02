@@ -1,0 +1,152 @@
+/* Variables */
+.ArcButton,
+.ArcButton.ArcSizeDefault,
+.ArcSizeDefault .ArcButton {
+  --ArcButton-fontSize: var(--ARC-sizing-fontSize);
+  --ArcButton-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcButton-verticalSpace: var(--ARC-sizing-verticalSpace);
+}
+
+.ArcButton.ArcSizeCompact,
+.ArcSizeCompact .ArcButton {
+  --ArcButton-fontSize: var(--ARC-sizing-compact-fontSize);
+  --ArcButton-horizontalSpace: var(--ARC-sizing-compact-horizontalSpace);
+  --ArcButton-verticalSpace: var(--ARC-sizing-compact-verticalSpace);
+}
+
+.ArcButton.ArcSizeLarge,
+.ArcSizeLarge .ArcButton {
+  --ArcButton-fontSize: var(--ARC-sizing-large-fontSize);
+  --ArcButton-horizontalSpace: var(--ARC-sizing-large-horizontalSpace);
+  --ArcButton-verticalSpace: var(--ARC-sizing-large-verticalSpace);
+}
+
+/* Styles */
+.ArcButton {
+  /* sizing and alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: calc(2 * var(--ArcButton-verticalSpace)) var(--ArcButton-horizontalSpace);
+
+  /* aesthetic */
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: var(--ArcButton-fontSize);
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    border-color: var(--primary-disabled);
+    background: var(--primary-disabled);
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover:not(.ArcButton--disabled),
+  &:active:not(.ArcButton--disabled) {
+    border-color: var(--primary-hover);
+    background: var(--primary-hover);
+  }
+
+  &-success {
+    border-color: var(--tertiary);
+    background: var(--tertiary);
+    color: var(--on-secondary);
+
+    &:hover:not(.ArcButton--disabled),
+    &:active:not(.ArcButton--disabled) {
+      border-color: var(--tertiary-hover);
+      background: var(--tertiary-hover);
+    }
+
+    &.ArcButton--disabled {
+      border-color: var(--tertiary-disabled);
+      background: var(--tertiary-disabled);
+    }
+  }
+
+  &-secondary {
+    border: 1px solid var(--secondary);
+    background: var(--secondary);
+    color: var(--on-secondary);
+
+    &:hover:not(.ArcButton--disabled),
+    &:active:not(.ArcButton--disabled) {
+      border-color: var(--secondary-hover);
+      background: var(--secondary-hover);
+    }
+
+    &.ArcButton--disabled {
+      border-color: var(--secondary-disabled);
+      background: var(--secondary-disabled);
+    }
+  }
+
+  &-tertiary {
+    border: 1px solid var(--tertiary);
+    background: var(--tertiary);
+    color: var(--on-tertiary);
+
+    &:hover:not(.ArcButton--disabled),
+    &:active:not(.ArcButton--disabled) {
+      border-color: var(--tertiary-hover);
+      background: var(--tertiary-hover);
+    }
+
+    &.ArcButton--disabled {
+      border-color: var(--tertiary-disabled);
+      background: var(--tertiary-disabled);
+    }
+  }
+
+  &-warning {
+    border: 1px solid var(--warning);
+    background: var(--warning);
+    color: var(--on-warning);
+
+    &:hover:not(.ArcButton--disabled),
+    &:active:not(.ArcButton--disabled) {
+      border-color: var(--warning-hover);
+      background: var(--warning-hover);
+    }
+
+    &.ArcButton--disabled {
+      border-color: var(--warning-disabled);
+      background: var(--warning-disabled);
+    }
+  }
+
+  &-error {
+    border-color: var(--error);
+    background: var(--error);
+    color: var(--on-error);
+
+    &:hover:not(.ArcButton--disabled),
+    &:active:not(.ArcButton--disabled) {
+      border-color: var(--error-hover);
+      background: var(--error-hover);
+    }
+
+    &.ArcButton--disabled {
+      border-color: var(--error-disabled);
+      background: var(--error-disabled);
+    }
+  }
+
+  &:focus {
+    box-shadow: var(--ARC-element-focus-shadow) rgba(var(--primary-rgb), 0.4);
+    border-color: var(--primary);
+  }
+}

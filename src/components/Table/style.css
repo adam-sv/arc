@@ -1,0 +1,17 @@
+.ArcTable {
+  --border: 1px solid var(--color-border);
+  --padding: 8px;
+  --cell-background: var(--grey-0);
+  --cell-alternating-background: var(--grey-1);
+  --cell-highlight-background: var(--grey-2);
+  --cell-hover-background: var(--grey-2-hover);
+
+  display: flex;
+  border: var(--border);
+  font-size: 12px;
+  max-height: 60vh;
+
+  .Checkbox:hover {
+    background: none;
+  }
+}
