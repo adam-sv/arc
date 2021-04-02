@@ -1,21 +1,12 @@
 # ARC
 
-ARC is a react component library with typing support. Typescript > 3.8 is required to use the library as it has `export type { ... }` statements, introduced in ts3.8.
+ARC (ADAM React Components) is a React component library built with TypeScript. Typescript >= 3.8 is required to use the library as it has `export type { ... }` statements, introduced in ts3.8.
 
 ## Usage
-### Inside Project ADAM at Acubed
-
-Point your project at Project ADAM's internal GitLab Package Registry (NPM replacement):
-You'll also need to auth. Info here: https://gitlab.adam-sv.com/documentation/internal-documentation/knowledge-base/-/blob/master/gitlab/registry/PackageRegistry.md
-
-```.yarnrc
-# .yarnrc to point @adam-sv at our internal GitLab registry
-"@adam-sv:registry" "https://gitlab.adam-sv.com/api/v4/packages/npm/"
-```
 
 ### From npmjs.org
 
-It is unclear whether or not this is published to npm, yarn, or any public registry at all.
+We are working to have this published on npmjs.org or yarn's registry.
 
 ### CSS
 
