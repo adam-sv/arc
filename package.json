@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "tsdx build",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o ./docs/",
     "lint": "tsdx lint",
     "prepare": "yarn install --ignore-scripts && yarn build",
     "start": "tsdx watch",
