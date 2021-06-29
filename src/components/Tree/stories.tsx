@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 
 // StoryTelling
-import { Tree } from '@adam-sv/arc';
+import { Tree } from '.';
 import { StoryContainer as Story, StoryVariableDisplay as VariableDisplay } from '../../utils';
 
 // types
@@ -118,7 +118,7 @@ const nodeListeners = {
   didCollapse: (node: ITreeNode) => console.log('Collapsed:', node),
 };
 
-storiesOf('General/Tree/Sizes', module)
+storiesOf('General/Tree - New/Sizes', module)
   .add('Default', () => (
     <Story style={treeStoryStyle}>
       <Tree
@@ -146,7 +146,7 @@ storiesOf('General/Tree/Sizes', module)
     </Story>
   ));
 
-storiesOf('General/Tree/Initially Expanded Depth', module)
+storiesOf('General/Tree - New/Initially Expanded Depth', module)
   .add('Default = 1', () => (
     <Story style={treeStoryStyle}>
       <Tree
@@ -183,7 +183,7 @@ storiesOf('General/Tree/Initially Expanded Depth', module)
     </Story>
   ));
 
-storiesOf('General/Tree/Load While Navigating', module)
+storiesOf('General/Tree - New/Load While Navigating', module)
   .add('Adds random handlers', () => {
     const [nodes, setNodes] = useState<ITreeNode[]>(expandableNodes);
     return (
@@ -206,7 +206,7 @@ storiesOf('General/Tree/Load While Navigating', module)
     );
   });
 
-storiesOf('General/Tree', module)
+storiesOf('General/Tree - New', module)
   .add('Variables', () => (
     <VariableDisplay
       vars={{

@@ -105,6 +105,19 @@ storiesOf('General/TreeBrowser/Modes', module)
       />
     </Story>
   ))
+  .add('Inline w/ Folder Selection', () => (
+    <Story style={treeBrowserStoryStyle}>
+      <TreeBrowser
+        label="My TreeBrowser"
+        placeholder="No file selected..."
+        trees={[
+          { nodes: treeNodes }
+        ]}
+        onChange={noop}
+        allowNonLeafSelection
+      />
+    </Story>
+  ))
   .add('As Modal', () => (
     <Story style={treeBrowserStoryStyle}>
       <TreeBrowser

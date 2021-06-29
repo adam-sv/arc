@@ -21,7 +21,7 @@ storiesOf(`ADAM React Components/${version}`, module)
       alignItems: 'center',
     }}>
       <div style={{ marginBottom: 8 }}>
-        Set your registry to the public ARC location. Currently not set. Then:
+        Set your registry to <a href="https://npm.internal.adam-sv.com/">https://npm.internal.adam-sv.com</a>. Then:
       </div>
       <div style={{
         padding: 8,

@@ -32,3 +32,7 @@ export interface IBoxDimensions {
   bottom: number;
   left: number;
 }
+
+export interface JSObject {
+  [key: string]: any;
+}

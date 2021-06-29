@@ -24,6 +24,7 @@ export interface ITreeProps extends IARCProps {
   initiallyExpandedDepth?: number;
   emptyContentMessage?: string | RenderableContent;
   componentSize?: ArcComponentSize;
+  allowNonLeafSelection?: boolean; // true if you can select a node which has children (i.e. a "folder" if the Tree is a filesystem)
 }
 
 export interface ITreeGraph {

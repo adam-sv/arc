@@ -239,6 +239,7 @@ export type {
   IBoxSize,
   IBoxDimensions,
   ICoords,
+  JSObject,
   Optionalize,
   RenderableContent,
   RenderResults,

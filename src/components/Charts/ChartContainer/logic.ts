@@ -113,11 +113,11 @@ function getContentPosInfo(
   const contentWidth =  initialWidth * zoom;
   const contentHeight = initialHeight * zoom;
 
-  console.log({
-    contentLeftPx,
-    contentLeftCoords,
-    contentWidth,
-  });
+  // console.log({
+  //   contentLeftPx,
+  //   contentLeftCoords,
+  //   contentWidth,
+  // });
 
   return {
     contentLeftPx,

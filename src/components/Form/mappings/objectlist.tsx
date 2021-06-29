@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, cn, Title, useStateIterator} from '@adam-sv/arc';
 // types
-import type { IARCProps, IButtonProps, IFormObjectListProps, IFormField, IFormSectionTitle, Optionalize, RenderableContent, TitleType } from '@adam-sv/arc';
+import type { IARCProps, IButtonProps, IFormField, IFormObjectListProps, IFormSectionTitle, JSObject, Optionalize, RenderableContent, TitleType } from '@adam-sv/arc';
 
 export const handledMappings = ['objectlist'];
 export function renderField(
@@ -23,6 +23,7 @@ export function renderField(
   return <ObjectList
     key={field.name}
     fields={props.fields}
+    formatFieldBeforeRender={props.formatFieldBeforeRender}
     itemLabel={props.itemLabel}
     lifecycleKey={lifecycleKey}
     maxMembers={props.maxMembers}
@@ -37,6 +38,7 @@ export function renderField(
 
 export interface IObjectListProps extends IARCProps {
   fields: IFormField[];
+  formatFieldBeforeRender?: (field: IFormField, listMember: any) => IFormField;
   itemLabel: string;
   lifecycleKey?: string;
   maxMembers?: number;
@@ -55,14 +57,26 @@ export interface IObjectListProps extends IARCProps {
 
 export function ObjectList(props: IObjectListProps) {
   const [iteration, iterator] = useStateIterator();
-  const { fields, itemLabel, lifecycleKey, maxMembers, newItemButtonProps, renderFormComponent, titleText, titleType, valueDidChange } = props;
   const value = props.value || [];
+  const {
+    fields,
+    formatFieldBeforeRender,
+    itemLabel,
+    lifecycleKey,
+    maxMembers,
+    newItemButtonProps,
+    renderFormComponent,
+    titleText,
+    titleType, 
+    valueDidChange,
+  } = props;
+  
+  const crossSize = 14;
   let listCanAcceptMoreMembers = true;
   if (typeof maxMembers === 'number') {
     listCanAcceptMoreMembers = (value.length < maxMembers);
   }
 
-  const crossSize = 14;
 
   return (
     <div className={cn("ArcObjectList", props.className)}>
@@ -94,19 +108,27 @@ export function ObjectList(props: IObjectListProps) {
               </svg>
             </Button>
           </div>
-          {fields.map((field: IFormField, j: number) => 
-            <div className="ArcObjectList-member-fields ArcForm-row">
+          {fields.map((field: IFormField, j: number) => {
+            let adjustedField = Object.assign({}, field);
+            if (typeof formatFieldBeforeRender === 'function') {
+              adjustedField = formatFieldBeforeRender(adjustedField, child);
+            }
+            if (child[field.name] && !adjustedField.initialValue) {
+              adjustedField.initialValue = child[field.name];
+            }
+
+            return <div className="ArcObjectList-member-fields ArcForm-row" key={j}>
               {renderFormComponent(
-                Object.assign({ initialValue: child[field.name] }, field),
+                adjustedField,
                 (fieldName: string) => child[fieldName],
                 (fieldName: string, newFieldValue: any) => {
                   child[fieldName] = newFieldValue;
                   valueDidChange(value.slice(0, i).concat(child).concat(value.slice(i + 1)));
                 },
-                lifecycleKey,
+                lifecycleKey || '',
               )}
             </div>
-          )}
+          })}
         </div>
       ))}
       {listCanAcceptMoreMembers && <Button
@@ -120,7 +142,7 @@ export function ObjectList(props: IObjectListProps) {
 }
 
 function getDefaultMember(fields: IFormField[]) {
-  const member = {};
+  const member:JSObject = {};
   fields.forEach(field => {
     if (field.name) {
       member[field.name] = field.initialValue;

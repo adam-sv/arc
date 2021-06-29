@@ -2,7 +2,10 @@
 import React, { SyntheticEvent, useState } from 'react';
 import deepEqual from 'deep-equal';
 // internals
-import { Button, cn, getSizeClassName, isArray, mapToObj, Title, useStateIterator } from '@adam-sv/arc';
+import { Button, cn, getSizeClassName, isArray, JSObject, mapToObj, Title, useStateIterator } from '@adam-sv/arc';
+// subelements
+import { renderField } from './mappings';
+import { Toast } from './Toast';
 // styles
 import './style.css';
 // types
@@ -10,9 +13,6 @@ import type { TitleType } from '@adam-sv/arc';
 import type { IFormCustomComponentProps } from './mappings/custom';
 import type { FormFields, FormFieldType, FormResourceState, FormRow, FormRows, IFormAccordionSection, IFormAccordionProps, IFormField, IFormHooks, IFormObjectListProps, IFormProps, IFormRenderOptions, IFormSectionTitle, IFormState } from './types';
 export type { FormFields, FormFieldType, FormResourceState, FormRow, FormRows, IFormAccordionSection, IFormAccordionProps, IFormCustomComponentProps, IFormField, IFormHooks, IFormObjectListProps, IFormProps, IFormRenderOptions, IFormSectionTitle, IFormState };
-// subelements
-import { renderField } from './mappings';
-import { Toast } from './Toast';
 
 export function Form(props: IFormProps): JSX.Element {
   const [childLifecycleKey, iterateChildLifecycleKey] = useStateIterator();
@@ -58,12 +58,13 @@ export function Form(props: IFormProps): JSX.Element {
     return arcFormData.get(fieldName);
   }
   function updateField(fieldName: string, value: any): void {
+    const beforeState = JSON.parse(JSON.stringify(mapToObj(getInitialFormValues(props))));
     if (arcFormData.has(fieldName) && arcFormData.get(fieldName) === value) {
       return;
     }
 
     arcFormData.set(fieldName, value);
-    const updateHasChanges = !deepEqual(mapToObj(arcFormData), mapToObj(getInitialFormValues(props)));
+    const updateHasChanges = !deepEqual(mapToObj(arcFormData), beforeState);
     setHasChanges(updateHasChanges);
     setArcFormData(new Map(arcFormData));
     if (props.onChange) {
@@ -198,14 +199,27 @@ function shouldUseCustomRenderer(props: IFormProps) {
 function getInitialFormValues(props: IFormProps) {
   const arcFormData = new Map();
 
-  const trackFieldValue = (field) => {
-    if (field.name && typeof field.name === 'string') {
-      arcFormData.set(
-        field.name,
-        field.initialValue !== undefined
-          ? field.initialValue
-          : guessEmptyValue(field),
-      );
+  const trackFieldValue = (field: IFormField) => {
+    const _setField = (field: IFormField) => {
+      if (field.name && typeof field.name === 'string') {
+        arcFormData.set(
+          field.name,
+          field.initialValue !== undefined
+            ? field.initialValue
+            : guessEmptyValue(field),
+        );
+      }
+    };
+
+    _setField(field);
+    
+    // TODO: shouldn't this belong below in the forEach as a cast-case for the field?
+    if (field.type === 'accordion') {
+      (field.componentProps as IFormAccordionProps).sections.forEach((section: IFormAccordionSection) => {
+        section.fields.forEach((field: IFormField) => {
+          _setField(field);
+        });
+      });
     }
   }
 
@@ -214,7 +228,7 @@ function getInitialFormValues(props: IFormProps) {
       (field as IFormField[])
         .forEach(trackFieldValue);
     } else {
-      trackFieldValue(field);
+      trackFieldValue(field as IFormField);
     }
   });
 
@@ -238,10 +252,14 @@ function formatData(props: IFormProps, arcFormData: Map<string, any>): (FormData
       if (field && ['dropdown', 'multiselect'].indexOf(field.type) >= 0) {
         returnValue = value && value.value;
       }
+
+      // create an object or a FormData
+      // FormData probably stringifies everything in a kind of undesirable fashion but is an
+      // important compatibility tool
       if (props.returnFormData) {
         (consumerData as FormData).set(dataName, returnValue);
       } else {
-        (consumerData as object)[dataName] = returnValue;
+        (consumerData as JSObject)[dataName] = returnValue;
       }
       return consumerData;
     }, consumerData);
@@ -249,6 +267,8 @@ function formatData(props: IFormProps, arcFormData: Map<string, any>): (FormData
 
 function findField(dataName: string, props: IFormProps): IFormField | undefined {
   let fieldWithMatchingDataName;
+
+  // these fields have a few permutations
   props.fields.forEach((field: (IFormField | IFormSectionTitle | IFormField[])) => {
     if (isArray(field)) {
       (field as IFormField[]).forEach((f: IFormField) => {
@@ -258,6 +278,18 @@ function findField(dataName: string, props: IFormProps): IFormField | undefined 
       });
     } else if ((field as IFormField).name && (field as IFormField).name === dataName) {
       fieldWithMatchingDataName = field;
+    } else if ((field as IFormField).type === 'accordion') {
+      const componentProps:IFormAccordionProps = (field as IFormField).componentProps as IFormAccordionProps;
+
+      const possibleFields:IFormField[] = componentProps.sections.reduce((fields, section) => {
+        return fields.concat(section.fields);
+      }, []);
+      // make sure you don't naively assign the match to the find result because it may have been found
+      // in a different loop thru the forEach
+      const matchingField = possibleFields.find(field => field.name === dataName);
+      if (matchingField) {
+        fieldWithMatchingDataName = matchingField;
+      }
     }
   });
   return fieldWithMatchingDataName;

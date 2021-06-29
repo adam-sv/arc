@@ -3,13 +3,12 @@ import type { IARCProps, ArcComponentSize, ButtonType, IProcessedTreeNode, ITree
 export interface ITreeBrowserProps extends IARCProps {
   // you must always pass trees
   trees: ITreeProps[];
-  initiallyExpandedDepth?: number;
-  // display the current value in the modal view?
-  displayCurrentValue?: boolean;
+  initiallyExpandedDepth?: number; // 0 means top-level nodes are all collapsed, 1 means top-level nodes are open and their children are collapsed, ...
+  displayCurrentValue?: boolean; // true to display the current value in the modal view, false to hide it
   selectedNodeId?: TreeNodeId | undefined;
   onChange: (node: IProcessedTreeNode | null) => void;
-  // if you useAsModal, you can pass InputSkeleton props
-  useAsModal?: boolean;
+  allowNonLeafSelection?: boolean; // true if you can select a node which has children (i.e. a "folder" if the Tree is a filesystem)
+  useAsModal?: boolean; // if useAsModal is true, we render an InputSkeleton that opens a modal with the TreeBrowser
   titleText?: string;
   label?: string;
   info?: JSX.Element | string;

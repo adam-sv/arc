@@ -1,5 +1,5 @@
 import type { ArcComponentSize, IARCProps, IDropdownProps, IInputProps, ITitleProps, ITreeBrowserProps, Optionalize, RenderableContent, TitleType } from '@adam-sv/arc';
-import { IButtonProps } from '../Button';
+import type { IButtonProps } from '@adam-sv/arc';
 
 export type FormFieldType = (
   'text' | 'textarea' | 'password' | 'integer' | 'float'  // Input
@@ -55,6 +55,7 @@ export interface IFormHooks {
 }
 
 export type FormFields = (IFormSectionTitle | IFormField | IFormField[])[];
+
 export interface IFormProps extends IARCProps {
   title?: string;
   description?: string | RenderableContent;
@@ -91,6 +92,7 @@ export interface IFormAccordionProps {
 
 export interface IFormObjectListProps {
   fields: IFormField[];
+  formatFieldBeforeRender?: (field: IFormField, listMember: any) => IFormField;
   itemLabel: string; // "Source" => items get title Source 0, Source 1, ...; null => no item title
   label: string;
   maxMembers?: number;

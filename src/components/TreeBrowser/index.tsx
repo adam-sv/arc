@@ -13,10 +13,15 @@ export function TreeBrowser(props: ITreeBrowserProps) {
   const [isOpen, setIsOpen] = useModal();
   const [currentlySelected, _setCurrentlySelected] = useState<IProcessedTreeNode | null>(null);
   function setCurrentlySelected(node: IProcessedTreeNode | null) {
-    if (node && node.disabled) { return; }
+    if (node && node.disabled) {
+      return;
+    }
     _setCurrentlySelected(node);
   }
 
+  // note: this is not intended to be controlled by `currentlySelected` above
+  // instead, the point is that we let users have `currentlySelected` to represent their ephemeral choice,
+  // but once they confirm via Button click, the props.selectedNodeId needs to be passed to keep the choice
   const selectedNode = findSelectedNode(props.trees, props.selectedNodeId);
 
   // does this actually do anything
@@ -47,18 +52,21 @@ export function TreeBrowser(props: ITreeBrowserProps) {
           key={i}
           nodes={tree.nodes}
           nodeListeners={Object.assign({
-            onClick: composeFunctions(
-              (node: IProcessedTreeNode) =>
-                node.childrenIds.length < 1 && setCurrentlySelected(node),
-              (node: IProcessedTreeNode) =>
-                tree.nodeListeners?.onClick && tree.nodeListeners.onClick(node),
-            ),
-          }, tree.nodeListeners || {})}
+            onClick:  (node: IProcessedTreeNode) => {
+              if (props.allowNonLeafSelection || node.childrenIds.length < 1) {
+                setCurrentlySelected(node);
+              }
+              if (tree.nodeListeners?.onClick) {
+                tree.nodeListeners.onClick(node);
+              }
+            },
+          }, (tree.nodeListeners || {}))}
           selectedNodeId={currentlySelected ? currentlySelected.id : props.selectedNodeId}
           initiallyExpandedDepth={typeof tree.initiallyExpandedDepth === 'number'
             ? tree.initiallyExpandedDepth
             : props.initiallyExpandedDepth
           }
+          allowNonLeafSelection={props.allowNonLeafSelection}
         />
       )}
       <div className="ArcTreeBrowser-controls">

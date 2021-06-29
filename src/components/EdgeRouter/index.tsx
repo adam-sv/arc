@@ -102,7 +102,7 @@ function computeSmartEdges(
   setEdgeGeometry: (geo: IEdgeDataGeometry[]) => void,
   spacing: number,
 ): void {
-  console.log('computeSmartEdges');
+  // console.log('computeSmartEdges');
   const { accessors, edges, nodes } = graph.webcolaDefinition;
   const gridRouter = new WCGridRouter(
     nodes,

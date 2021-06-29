@@ -1,6 +1,6 @@
 # Third Party Licenses
 
-## @types/d3@6.2.0
+## @types/d3@6.3.0
 
 MIT License
 
@@ -50,7 +50,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
 
 
-## d3@6.3.1
+## d3@6.6.2
 
 Copyright 2010-2020 Mike Bostock
 All rights reserved.
@@ -81,7 +81,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-## deep-equal@2.0.4
+## deep-equal@2.0.5
 
 MIT License
 
