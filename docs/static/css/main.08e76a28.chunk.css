@@ -282,7 +282,7 @@ body {
   --ARC-sizing-compact-inputElement-height: 36px;
   --ARC-sizing-compact-labelSize: 10px;
   --ARC-sizing-compact-fontSize: 12px;
-  --ARC-sizing-compact-horizontalSpace: 5px;
+  --ARC-sizing-compact-horizontalSpace: 6px;
   --ARC-sizing-compact-verticalSpace: 3px;
 }
 
@@ -3182,6 +3182,138 @@ available variables
     text-align: right;
   }
 
+.ArcTree-Node {
+  flex: 0 0 fit-content;
+  font-size: var(--ArcTree-fontSize);
+  border-radius: 4px;
+}
+
+  .ArcTree-Node-clickable .ArcTree-Node-label {
+    flex: 1 1 1px;
+    cursor: pointer;
+  }
+
+  .ArcTree-Node-clickable .ArcTree-Node-label:hover {
+      background: var(--background);
+    }
+
+  .ArcTree-Node-selected > .ArcTree-Node-content {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+
+  /* the dot that is the leafIcon default should be colored */
+
+  .ArcTree-Node-selected > .ArcTree-Node-content .ArcTree-Node-content-iconContainer-leafIcon {
+      background: var(--on-primary);
+    }
+
+  .ArcTree-Node-selected > .ArcTree-Node-content:hover,
+    .ArcTree-Node-selected > .ArcTree-Node-content:hover .ArcTree-Node-label {
+      background: var(--primary-hover);
+    }
+
+  /* &&-selected => .ArcTree-Node.ArcTree-Node-selected > ... */
+
+  .ArcTree-Node.ArcTree-Node-selected > .ArcTree-Node-childRow > .ArcTree-Node-childColumn .ArcTree-Node-childColumn-background {
+    background: var(--primary);
+  }
+
+  .ArcTree-Node.ArcTree-Node-selected > .ArcTree-Node-childRow > .ArcTree-Node-childColumn .ArcTree-Node-childColumn-background:hover {
+      background: var(--primary-hover);
+    }
+
+  .ArcTree-Node-disabled {
+    color: rgba(var(--grey-5-rgb), 0.7);
+  }
+
+  .ArcTree-Node-content {
+    display: flex;
+    justify-content: flex-start;
+    padding: var(--ArcTree-verticalSpace) var(--ArcTree-horizontalSpace);
+    border-radius: var(--ArcTree-verticalSpace);
+  }
+
+  .ArcTree-Node-iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 var(--ArcTree-horizontalSpace);
+    margin-right: var(--ArcTree-horizontalSpace);
+    cursor: s-resize;
+  }
+
+  .ArcTree-Node-iconContainer-expanded {
+      cursor: n-resize;
+    }
+
+  .ArcTree-Node-iconContainer-expanded .ArcTree-Node-expansionIcon {
+        transform: rotate(90deg);
+        transition: 200ms;
+      }
+
+  .ArcTree-Node-iconContainer-leaf {
+      cursor: unset;
+    }
+
+  .ArcTree-Node-expansionIcon {
+    width: 0;
+    height: 0;
+    border-left: var(--ArcTree-horizontalSpace) solid var(--color-border-dark);
+    border-top: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
+    border-bottom: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
+    border-right: 0 solid transparent;
+    transform: rotate(0deg);
+    transition: 200ms;
+  }
+
+  .ArcTree-Node-leafIcon {
+    width: var(--ArcTree-horizontalSpace);
+    height: var(--ArcTree-horizontalSpace);
+    background: var(--color-border-dark);
+    border-radius: 100%;
+    cursor: unset;
+  }
+
+  .ArcTree-Node-pendingCollapse > .ArcTree-Node-childRow {
+    background: var(--background);
+  }
+
+  .ArcTree-Node .ArcTree-Node-childRow {
+    display: flex;
+    position: relative;
+    padding-left: var(--ArcTree-horizontalSpace);
+  }
+
+  .ArcTree-Node .ArcTree-Node-childRow .ArcTree-Node-childColumn {
+      flex: 0 0 var(--ArcTree-horizontalSpace);
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  .ArcTree-Node .ArcTree-Node-childRow .ArcTree-Node-childColumn .ArcTree-Node-childColumn-background {
+        height: 100%;
+        width: 2px;
+        background: var(--color-border);
+      }
+
+  .ArcTree-Node .ArcTree-Node-childRow .ArcTree-Node-childColumn:hover {
+        cursor: n-resize;
+        background: var(--background);
+      }
+
+  .ArcTree-Node .ArcTree-Node-childRow .ArcTree-Node-childColumn:hover .ArcTree-Node-childColumn-background {
+          background: var(--color-border-dark);
+        }
+
+  .ArcTree-Node .ArcTree-Node-children {
+    flex: 1 1 1px;
+    display: flex;
+    flex-direction: column;
+  }
+
 /* Variables */
 .ArcTree,
 .ArcTree.ArcSizeDefault,
@@ -3217,84 +3349,8 @@ available variables
   align-items: stretch;
   min-height: var(--ArcTree-minHeight);
   padding: var(--ArcTree-verticalSpace) var(--ArcTree-horizontalSpace);
-  cursor: pointer;
   border: 1px solid var(--color-border);
 }
-
-.ArcTree-Node {
-    flex: 0 0 fit-content;
-    font-size: var(--ArcTree-fontSize);
-    padding-top: var(--ArcTree-verticalSpace);
-    padding-left: var(--ArcTree-horizontalSpace);
-    border-radius: 4px;
-  }
-
-.ArcTree-Node-leaf:hover {
-      cursor: pointer;
-      background: var(--grey-1);
-    }
-
-.ArcTree-Node-selected:hover {
-      background: var(--primary-hover);
-    }
-
-.ArcTree-Node-selected {
-      background: var(--primary);
-      color: var(--on-primary);
-    }
-
-/* the dot that is the leafIcon default should be colored */
-
-.ArcTree-Node-selected > .ArcTree-Node-content .ArcTree-Node-content-iconContainer-leafIcon {
-        background: var(--on-primary);
-      }
-
-.ArcTree-Node.disabled {
-      color: rgba(var(--grey-5-rgb), 0.7);
-    }
-
-.ArcTree-Node-content {
-      display: flex;
-      justify-content: flex-start;
-      padding-bottom: var(--ArcTree-verticalSpace);
-    }
-
-.ArcTree-Node-content-iconContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 0 0 var(--ArcTree-horizontalSpace);
-        margin-left: calc(calc(-0.5 * var(--ArcTree-horizontalSpace)) + 1px);
-        margin-right: var(--ArcTree-horizontalSpace);
-      }
-
-.ArcTree-Node-content-iconContainer-expansionIcon {
-          width: 0;
-          height: 0;
-          border-left: var(--ArcTree-horizontalSpace) solid var(--color-border-dark);
-          border-top: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
-          border-bottom: calc(var(--ArcTree-horizontalSpace) / 2) solid transparent;
-          border-right: 0 solid transparent;
-          transform: rotate(0deg);
-          transition: 200ms;
-        }
-
-.ArcTree-Node-content-iconContainer-expansionIcon-expanded {
-            transform: rotate(90deg);
-            transition: 200ms;
-          }
-
-.ArcTree-Node-content-iconContainer-leafIcon {
-          width: var(--ArcTree-horizontalSpace);
-          height: var(--ArcTree-horizontalSpace);
-          background: var(--color-border-dark);
-          border-radius: 100%;
-        }
-
-.ArcTree-Node .ArcTree-Node-children {
-      border-left: 1px solid var(--color-border);
-      padding-left: var(--ArcTree-horizontalSpace);
-    }
 
 /* Variables */
 .ArcTreeBrowser,
@@ -3731,4 +3787,4 @@ available variables
 }
 
 
-/*# sourceMappingURL=main.d5e22785.chunk.css.map*/
+/*# sourceMappingURL=main.08e76a28.chunk.css.map*/
