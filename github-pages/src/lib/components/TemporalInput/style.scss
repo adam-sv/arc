@@ -1,0 +1,46 @@
+.ArcTemporalInput {
+  --ArcTemporalInput-picker-button-fill: var(--border);
+  --ArcTemporalInput-picker-button-stroke: var(--border-shade);
+
+  position: relative;
+
+  .ArcInput-label-row {
+    pointer-events: none;
+
+    label {
+      pointer-events: none;
+    }
+  }
+
+  .MonoIcon-Clock,
+  .MonoIcon-Calendar {
+    position: absolute;
+    right: var(--ARC-sizing-horizontalSpace);
+    bottom: var(--ARC-sizing-verticalSpace);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    fill: var(--ArcTemporalInput-picker-button-fill);
+    stroke: var(--ArcTemporalInput-picker-button-stroke);
+  }
+  
+  input {
+    font-family: var(--ARC-font-family);
+    resize: none;
+    
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: var(--ARC-sizing-horizontalSpace);
+      bottom: var(--ARC-sizing-verticalSpace);
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      cursor: pointer;
+      background: transparent;
+    }
+  }
+}

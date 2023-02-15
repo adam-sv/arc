@@ -1,0 +1,27 @@
+.ArcEdge.danger {
+  --ArcEdge-color: var(--danger);
+  --ArcEdge-color-hover: var(--danger-hover);
+}
+
+.SmartGraph-Faceplate {
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1px 8px;
+
+    > div {
+      &:first-child {
+        font-style: italic;
+        text-align: left;
+      }
+
+      &:last-child {
+        margin-left: auto;
+        font-weight: bold;
+        text-align: right;
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.ArcModal {
+  --ArcModal-fontSize: var(--ARC-sizing-fontSize);
+  --ArcModal-labelSize: var(--ARC-sizing-labelSize);
+  --ArcModal-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcModal-verticalSpace: var(--ARC-sizing-verticalSpace);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: var(--ArcModal-verticalSpace) var(--ArcModal-horizontalSpace);
+
+  /* animations */
+  opacity: 1;
+
+  &.entering {
+    animation-name: fade-in;
+    animation-duration: 300ms;
+  }
+
+  &.exiting {
+    opacity: 0;
+    animation-name: fade-in;
+    animation-duration: 300ms;
+    animation-direction: reverse;
+
+    .ArcModal-layer-content {
+      opacity: 0;
+      animation-name: fade-in;
+      animation-duration: 200ms;
+      animation-direction: reverse;
+    }
+  }
+
+  &.exited {
+    display: none;
+    opacity: 0;
+  }
+
+  &-layer-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: var(--ARC-modal-background-rgba);
+  }
+
+  &-layer-content {
+    z-index: 1;
+    margin: auto;
+  }
+
+  &-helper-componentHidden {
+    display: none;
+  }
+
+  &.ArcModal-anchor-right,
+  &.ArcModal-anchor-left {
+    .ArcModal-layer-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      animation-duration: 300ms;
+      animation-delay: 300ms;
+    }
+
+    &.entered {
+      .ArcModal-layer-content {
+        transform: translateX(0%);
+      }
+    }
+  }
+
+  &.ArcModal-anchor-right {
+    .ArcModal-layer-content {
+      right: 0;
+      border-radius: var(--ARC-border-radius) 0 0 var(--ARC-border-radius);
+      transform: translateX(100%);
+      animation-name: drawer-slide-in-from-right;
+    }
+  }
+
+  &.ArcModal-anchor-left {
+    .ArcModal-layer-content {
+      left: 0;
+      border-radius: 0 var(--ARC-border-radius) var(--ARC-border-radius) 0;
+      transform: translateX(-100%);
+      animation-name: drawer-slide-in-from-left;
+    }
+  }
+}

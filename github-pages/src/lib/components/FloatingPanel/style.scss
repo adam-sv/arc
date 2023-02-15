@@ -1,0 +1,53 @@
+.ArcFloatingPanel {
+  position: fixed;
+  top: var(--ArcFloatingPanel-y);
+  left: var(--ArcFloatingPanel-x);
+  z-index: 1000;
+  transition: transform 0.3s, top 0.3s, left 0.3s, opacity 0.3s;
+  
+  &.ArcPanel {
+    // override default panel style (requires higher precedence)
+    margin: inherit;
+  }
+
+  &.anchor-top-left {
+    // default, do nothing
+  }
+
+  &.anchor-top {
+    transform: translate(-50%, 0);
+  }
+
+  &.anchor-top-right {
+    transform: translate(-100%, 0);
+  }
+  
+  &.anchor-left {
+    transform: translate(0, -50%);
+  }
+
+  &.anchor-center {
+    transform: translate(-50%, -50%);
+  }
+
+  &.anchor-right {
+    transform: translate(-100%, -50%);
+  }
+
+  &.anchor-bottom-left {
+    transform: translate(0, -100%);
+  }
+
+  &.anchor-bottom {
+    transform: translate(-50%, -100%);
+  }
+
+  &.anchor-bottom-right {
+    transform: translate(-100%, -100%);
+  }
+
+  &.fade {
+    pointer-events: none;
+    opacity: 0;
+  }
+}

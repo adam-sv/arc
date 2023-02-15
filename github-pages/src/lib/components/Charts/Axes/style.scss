@@ -1,0 +1,88 @@
+.YAxisSwimLane text {
+  font-size: 12px;
+  dominant-baseline: middle;
+  text-anchor: left;
+  fill: var(--surface-text);
+  stroke: transparent;
+}
+
+.XAxisTextBottom, .XAxisTextTop {
+  line {
+    fill: transparent;
+    stroke: var(--border);
+    stroke-width: 1px;
+  }
+
+  rect {
+    fill: var(--surface);
+    stroke: var(--surface)
+  }
+
+  text {
+    font-size: 8px;
+    dominant-baseline: middle;
+    text-anchor: end;
+    fill: var(--surface-text);
+    stroke: none;
+    transform: rotate(-45deg);
+    transform-origin: right center;
+    transform-box: fill-box;
+
+    &.XAxisTextBottom-Label {
+      dominant-baseline: auto;
+      text-anchor: middle;
+      transform: rotate(0deg);
+    }
+
+    &.XAxisTextTop-Label {
+      background-color: white;
+      dominant-baseline: hanging;
+      text-anchor: middle;
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.YAxisTextLeft, .YAxisTextRight {
+  line {
+    fill: transparent;
+    stroke: var(--border);
+    stroke-width: 1px;
+  }
+
+  rect {
+    fill: var(--surface);
+    stroke: var(--surface)
+  }
+
+  text {
+    font-size: 12px;
+    dominant-baseline: middle;
+    text-anchor: end;
+    fill: var(--surface-text);
+    stroke: none;
+    transform-origin: right center;
+    transform-box: fill-box;
+
+    &.YAxisTextLeft-Label {
+      background-color: white;
+      dominant-baseline: hanging;
+      text-anchor: middle;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    &.YAxisTextRight-Label {
+      dominant-baseline: hanging;
+      text-anchor: middle;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+  }
+}
+
+.YAxisTextRight {
+  text {
+    text-anchor: start;
+  }
+}

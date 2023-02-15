@@ -1,0 +1,51 @@
+.ArcEdge {
+  --ArcEdge-color: var(--dark);
+  // --ArcEdge-arrowColor: var(--dark;
+  // --ArcEdge-edgeColor: var(--primary-shade);
+  --ArcEdge-color-hover: var(--dark-hover);
+  // --ArcEdge-arrowColor-hover: var(--dark-hover);
+  // --ArcEdge-edgeColor-hover: var(--primary-hover);
+
+  cursor: pointer;
+  stroke-width: 3px;
+
+  path {
+    opacity: 0.7;
+    fill: var(--ArcEdge-color);
+    stroke: transparent;
+  }
+
+  polygon {
+    fill: var(--ArcEdge-arrowColor, var(--ArcEdge-color));
+    stroke: var(--ArcEdge-arrowColor, var(--ArcEdge-color));
+    stroke-width: 1px;
+  }
+
+  &:hover path {
+    stroke: var(--ArcEdge-edgeColor-hover, var(--ArcEdge-color-hover));
+  }
+
+  &:hover {
+    polygon {
+      fill: var(--ArcEdge-arrowColor-hover, var(--ArcEdge-color-hover));
+      stroke: var(--ArcEdge-arrowColor-hover, var(--ArcEdge-color-hover));
+      stroke-width: 5px;
+    }
+
+    &.left polygon {
+      transform: translateX(2px);
+    }
+
+    &.right polygon {
+      transform: translateX(-2px);
+    }
+
+    &.up polygon {
+      transform: translateY(2px);
+    }
+
+    &.down polygon {
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.ChartBaseExample {
+  .ArcChart-Component {
+    background: var(--background);
+  }
+
+  .ArcChart-Component-content {
+    color: var(--dark-text);
+    background: var(--dark);
+  }
+}

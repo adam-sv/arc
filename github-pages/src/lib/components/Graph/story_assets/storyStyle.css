@@ -1,0 +1,45 @@
+.ArcNode {
+  transition: stroke 0.7s;
+
+  /* statuses */
+  &.PENDING {
+    stroke: black;
+  }
+  &.STARTED {
+    stroke: var(--primary);
+  }
+  &.FINISHED {
+    stroke: var(--tertiary);
+  }
+  
+
+  /* progress bars */
+  .loading-line,
+  .loading-line-bg {
+    stroke: var(--tertiary);
+    fill: transparent;
+    stroke-width: 5px;
+    transition: stroke-dasharray 0.7s;
+    opacity: 1;
+  }
+
+  .loading-line,
+  .loading-line-bg {
+    &.entering {
+      stroke-dasharray: 0, 100%, 0;
+      transition: stroke-dasharray 0.7s;
+    }
+  }
+
+  .loading-line,
+  .loading-line-bg {
+    &.finished {
+      transition: stroke-dasharray 0.7s, opacity 1.4s;
+      opacity: 0;
+    }
+  }
+
+  .loading-line-bg {
+    stroke: var(--background);
+  }
+}

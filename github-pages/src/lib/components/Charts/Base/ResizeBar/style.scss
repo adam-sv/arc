@@ -1,0 +1,49 @@
+.ArcChart-ResizeBar {
+  position: absolute;
+  border-color: var(--border);
+  border-style: solid;
+  
+  &:hover {
+    background: var(--medium);
+    border-color: var(--border-dark);
+  }
+
+  &.ArcChart-ResizeBar-active {
+    background: var(--primary);
+    border-color: var(--primary-dark);
+  }
+  
+  &-left,
+  &-right {
+    top: 0;
+    bottom: 0;
+    width: var(--ResizeBar-thickness, 5px);
+    cursor: ew-resize;
+    border-width: 0 1px;
+  }
+
+  &-left {
+    right: 0;
+  }
+
+  &-right {
+    left: 0;
+  }
+
+  &-top,
+  &-bottom {
+    right: 0;
+    left: 0;
+    height: var(--ResizeBar-thickness, 5px);
+    cursor: ns-resize;
+    border-width: 1px 0;
+  }
+
+  &-top {
+    bottom: 0;
+  }
+
+  &-bottom {
+    top: 0;
+  }
+}

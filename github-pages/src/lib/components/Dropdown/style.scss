@@ -1,0 +1,49 @@
+.ArcInput.ArcDropdown {
+  --ArcDropdown-fontSize: var(--ARC-sizing-fontSize);
+  --ArcDropdown-labelSize: var(--ARC-sizing-labelSize);
+  --ArcDropdown-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcDropdown-verticalSpace: var(--ARC-sizing-verticalSpace);
+
+  // for our select to cover the whole space
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+
+  &-value-row {
+    width: 100%;
+    pointer-events: none;
+  }
+
+  select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // its parent container doesnt include the arrow button or info icon
+    width: 100%;
+    height: 100%;
+    font-size: var(--ArcDropdown-fontSize);
+    line-height: normal;
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    opacity: 0;
+  }
+
+  /* From InputSkeleton */
+  .ArcInput-controls {
+    order: 1;
+    margin-left: 1em;
+    
+    .ArcButton-custom {
+      height: 100%;
+      pointer-events: none;
+      background: var(--light);
+      border-color: var(--border);
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 0;
+    }
+  }
+}

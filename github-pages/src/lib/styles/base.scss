@@ -1,0 +1,126 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans&display=swap';
+@import 'https://fonts.googleapis.com/css?family=Lato&display=swap';
+@import 'https://fonts.googleapis.com/css?family=Oswald&display=swap';
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior: none;
+  font-family: var(--ARC-font-family);
+  font-size: var(--ARC-sizing-font-size-base);
+  color: var(--surface-text);
+}
+
+html {
+  // fallback for those that don't support rem, equivalent to 10px
+  font-size: 62.5%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  --bar-thickness: 13px;
+
+  width: var(--bar-thickness);
+  height: var(--bar-thickness);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border:none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  background-clip: padding-box;
+  border: 4px solid rgb(0 0 0 / 0%);
+  border-radius: 100vh;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+  background-clip: padding-box;
+}
+
+/* Separate corner selector - hilarious */
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.ARC-grid-layout {
+  display: grid;
+  grid-template-areas:
+    'ARC-top-left ARC-top-center ARC-top-right'
+    'ARC-left ARC-center ARC-right'
+    'ARC-bottom-left ARC-bottom-center ARC-bottom-right';
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
+
+  > .top-left,
+  > .top-center,
+  > .top-right,
+  > .left,
+  > .center,
+  > .right,
+  > .bottom-left
+  > .bottom
+  > .bottom-right {
+    display: flex;
+  }
+
+  > .top-left {
+    grid-area: ARC-top-left;
+  }
+
+  > .top-center {
+    grid-area: ARC-top-center;
+  }
+
+  > .top-right {
+    grid-area: ARC-top-right;
+  }
+
+  > .left {
+    grid-area: ARC-left;
+  }
+
+  > .center {
+    grid-area: ARC-center;
+  }
+
+  > .right {
+    grid-area: ARC-right;
+  }
+
+  > .bottom-left {
+    grid-area: ARC-bottom-left;
+  }
+
+  > .bottom-center {
+    grid-area: ARC-bottom-center;
+  }
+
+  > .bottom-right {
+    grid-area: ARC-bottom-right;
+  }
+}

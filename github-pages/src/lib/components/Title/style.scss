@@ -1,0 +1,17 @@
+.ArcTitle {
+  display: inline-flex;
+  align-items: center;
+  margin: var(--ARC-sizing-verticalSpace) 0;
+  
+  &.left {
+    text-align: left;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.right {
+    text-align: right;
+  }
+}
