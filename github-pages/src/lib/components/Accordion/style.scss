@@ -1,0 +1,89 @@
+.ArcAccordion {
+  --ArcAccordion-rotationDeg: 45deg;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: height 300ms, width 300ms;
+
+  &-Horizontal {
+    flex-direction: row;
+    transition: height 300ms, width 300ms;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+    transition: height 300ms, width 300ms;
+
+    &-Horizontal {
+      flex-direction: row;
+      transition: height 300ms, width 300ms;
+    }
+
+    &-HorizontalLeft {
+      flex-direction: row-reverse;
+      transition: height 300ms, width 300ms;
+    }
+
+    .header {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      height: fit-content;
+      padding: 8px 12px 8px 0;
+      cursor: pointer;
+
+      &-rightButton {
+        flex-direction: row-reverse;
+        padding: 8px 0 12px;
+      }
+
+      .label {
+        flex: 1;
+      }
+
+      .ArcAccordion-Button {
+        display: flex;
+        flex: 0 0 24px;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        margin-right: 8px;
+        cursor: s-resize;
+        border: 2px solid var(--border-shade);
+        border-radius: 100%;
+        transition: 300ms;
+        transform: rotate(0deg);
+
+        .X line {
+          stroke: var(--border-shade);
+          stroke-width: 2px;
+        }
+
+        &.expanded {
+          cursor: n-resize;
+          transform: rotate(var(--ArcAccordion-rotationDeg));
+        }
+      }
+    }
+
+    .children {
+      padding: 0 2px;
+      overflow: hidden;
+      opacity: 1;
+      transition: height 300ms, width 300ms, opacity 150ms;
+      transition-delay: 0, 150ms;
+
+      &.collapsed {
+        opacity: 0;
+        transition: height 300ms, width 300ms, opacity 150ms;
+        transition-delay: 0, 0;
+      }
+    }
+  }
+}

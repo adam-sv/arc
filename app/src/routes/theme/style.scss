@@ -1,0 +1,90 @@
+
+.theme-view {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+
+  .ArcPanel {
+    margin: auto;
+  }
+
+  .input-columns {
+    display: flex;
+    
+    .input-column {
+      display: flex;
+      flex: 1 1 1px;
+      flex-direction: column;
+
+      &:not(:first-child) {
+        margin-left: 8px;
+      }
+
+      > :not(:first-child) {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+
+    .ArcButton {
+      flex: 1 1 1px;
+      width: initial;
+
+      &:not(:first-child) {
+        margin-left: var(--ARC-sizing-horizontalSpace);
+      }
+    }
+  }
+
+  .input-grid {
+    display: grid;
+    grid-template-areas:
+      'primary secondary tertiary'
+      'background surface border'
+      'light medium dark'
+      'success warning danger';
+    // grid-template-rows: 1fr 1fr 1fr;
+    .color-block {
+      display: flex;
+      flex-direction: column;
+      padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+    
+      .ArcTextInput {
+        margin-top: var(--ARC-sizing-verticalSpace);
+      }
+    }
+  }
+
+  .ArcCodeBlock {
+    font-size: 10px;
+  }
+}
+
+.css-variable-modal {
+  display: flex;
+  flex-direction: column;
+
+  .ArcModal-layer-content {
+    flex: 1 1 auto;
+    min-height: 1px;
+    overflow: auto;
+  }
+}
+
+.palette {
+  display: flex;
+
+  .palette-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--ARC-sizing-space);
+    margin: var(--ARC-sizing-space);
+    border-radius: var(--ARC-border-radius);
+  }
+}

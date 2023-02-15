@@ -1,0 +1,8 @@
+/* Variables */
+.ArcTree {
+  --ArcTree-verticalSpace: calc(var(--ARC-sizing-verticalSpace) * 0.5);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

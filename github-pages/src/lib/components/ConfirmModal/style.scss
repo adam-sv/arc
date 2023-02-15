@@ -1,0 +1,25 @@
+.ArcConfirmModal {
+  display: inline-grid;
+  grid-auto-flow: row;
+  gap: 2rem;
+  min-width: 28rem;
+  max-width: 100%;
+  padding: 2rem;
+  line-height: 1.25;
+  color: var(--surface-contrast);
+  background-color: var(--surface);
+  border-radius: var(--ARC-border-radius);
+}
+
+.ArcConfirmModal-message {
+  display: block;
+  margin: auto;
+}
+
+.ArcConfirmModal-buttonRow {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+  gap: 1rem;
+  justify-content: center;
+}

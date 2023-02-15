@@ -1,0 +1,159 @@
+
+.ArcForm.ArcForm--tightPack {
+  --ArcForm-verticalSpace: calc(var(--ARC-sizing-verticalSpace) / 2);
+  --ArcForm-horizontalSpace: calc(var(--ARC-sizing-verticalSpace) / 2);
+
+}
+
+.ArcForm.ArcForm--airTightPack {
+  --ArcForm-verticalSpace: calc(var(--ARC-sizing-verticalSpace) / 10);
+  --ArcForm-horizontalSpace: calc(var(--ARC-sizing-verticalSpace) / 10);
+
+  .ArcTextInput {
+    border-radius: 0;
+  }
+}
+
+.ArcForm {
+  --ArcForm-fontSize: var(--ARC-sizing-fontSize);
+  --ArcForm-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcForm-verticalSpace: var(--ARC-sizing-verticalSpace);
+
+  &-field-container {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+  }
+
+  &-row,
+  &-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    > * {
+      flex: 1;
+      width: unset;
+      min-width: 100px;
+      margin-bottom: var(--ArcForm-verticalSpace);
+
+      &:not(:first-child) {
+        margin-left: var(--ArcForm-horizontalSpace);
+      }
+    }
+
+    > .ArcTitle {
+      margin: 0 0 var(--ArcForm-verticalSpace);
+
+      .ArcForm--airTightPack & {
+        margin: var(--ArcForm-verticalSpace) 0;
+      }
+    }
+
+    .Toast:not(.hidden) {
+      margin: 0 var(--ArcForm-row-marginSides) var(--ArcForm-verticalSpace);
+      transition: 200ms;
+    }
+  }
+
+  .ArcForm--airTightPack &-row {
+    > * {
+      margin-right: -1px;
+    }
+  }
+
+  &-description {
+    margin: 0 0 var(--ArcForm-verticalSpace);
+    font-size: var(--ArcForm-fontSize);
+    text-align: center;
+  }
+}
+
+/* this is here for now lolol */
+.Toast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  min-height: 36px;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: 500ms;
+
+  &.success {
+    background: var(--success);
+  }
+
+  &.loading,
+  &.warning {
+    background: var(--warning);
+  }
+
+  &.error,
+  &.failure {
+    background: var(--danger);
+  }
+
+  &.hidden {
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    border-color: transparent;
+    border-width: 0;
+    transition: 200ms;
+  }
+}
+
+.ArcObjectList {
+  > .text {
+    margin-bottom: var(--ArcForm-verticalSpace);
+    font-style: italic;
+  }
+
+  > .ArcButton {
+    width: fit-content;
+    margin: 0 auto var(--ArcForm-verticalSpace);
+  }
+
+  .ArcObjectList-memberHeader {
+    display: flex;
+
+    .flex-button-offset {
+      flex: 0 0 32px;
+    }
+
+    .ArcTitle {
+      flex: 1 1 1px;
+      text-align: center;;
+    }
+
+    .ArcButton.remove-member {
+      display: flex;
+      flex: 0 0 24px;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      margin-right: 8px;
+      background: white;
+      border: 1px solid var(--border);
+
+      svg {
+        stroke: var(--dark);
+        transform: rotate(45deg);
+      }
+
+      &:hover {
+        svg {
+          stroke: var(--danger);
+          stroke-width: 2px;
+        }
+      }
+    }
+  }
+}

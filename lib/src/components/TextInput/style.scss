@@ -1,0 +1,9 @@
+.ArcTextInput {
+  textarea {
+    min-height: 2rem;
+  }
+
+  input {
+    min-height: calc(var(--ArcInput-font-size) + 4px);
+  }
+}

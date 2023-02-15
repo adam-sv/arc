@@ -1,0 +1,56 @@
+{
+  "name": "@adam-sv/arc",
+  "version": "1.1.0",
+  "author": "Project ADAM (https://acubed.airbus.com/projects/adam/)",
+  "license": "MIT",
+  "homepage": "https://acubed.airbus.com/projects/adam/",
+  "repository": "https://github.com/adam-sv/arc",
+  "module": "./dist/arc.esm.js",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.md"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "stylelint": {
+    "extends": [
+      "@adam-sv/stylelint-plugin"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@adam-sv/eslint-plugin/recommended"
+    ]
+  },
+  "prettier": "@adam-sv/prettier-plugin",
+  "scripts": {
+    "build": "rollup -c rollup.config.js --bundleConfigAsCjs",
+    "watch": "rollup -c rollup.config.js -w",
+    "prepare": "yarn install --ignore-scripts && yarn build",
+    "test": "craco test --watchAll=false --passWithNoTests",
+    "lint": "eslint --fix --ext .ts,.tsx .",
+    "stylelint": "stylelint --fix \"../lib/**/*.scss\""
+  },
+  "peerDependencies": {
+    "react": ">=18.0.2",
+    "react-dom": ">=18",
+    "react-router-dom": ">=5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^4.0.2",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-eslint": "^9.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "rollup": "^3.4.0",
+    "rollup-plugin-sass": "^1.12.16"
+  },
+  "dependencies": {
+    "d3": "^6.3.1",
+    "webcola": "^3.4.0",
+    "react-transition-group": "^4"
+  }
+}

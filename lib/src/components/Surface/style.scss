@@ -1,0 +1,8 @@
+.ArcSurface {
+  color: var(--surface-text);
+  background: var(--surface);
+
+  input::placeholder {
+    color: var(--surface-text);
+  }
+}

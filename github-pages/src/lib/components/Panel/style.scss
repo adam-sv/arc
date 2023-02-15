@@ -1,0 +1,21 @@
+.ArcPanel {
+  display: flex;
+  flex-direction: column;
+  min-width: 1px; // or any small number
+  min-height: 1px; // or any small number
+  padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+  overflow: auto;
+  border-color: var(--border);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: var(--ARC-border-radius);
+  box-shadow: var(--ARC-box-shadow);
+
+  > :not(:first-child) {
+    margin-top: 8px;
+  }
+
+  .ArcPanel {
+    box-shadow: inherit;
+  }
+}

@@ -1,0 +1,47 @@
+.ArcMultitextInput {
+  display: flex;
+  flex-direction: column;
+
+  h5 {
+    margin: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace) 0;
+  }
+
+  ul {
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 0 var(--ARC-sizing-horizontalSpace);
+      margin: var(--ARC-sizing-verticalSpace) 0;
+      font-size: var(--ARC-sizing-large-fontSize);
+      cursor:default;
+
+      .delete {
+        display: flex;
+        padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+        margin-left: var(--ARC-sizing-horizontalSpace);
+        cursor: pointer;
+
+        &:not(.disable-hover) {
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+      }
+
+      .MonoIcon-Delete {
+        margin-bottom: 2px;
+        fill: var(--danger);
+      }
+
+      &:hover .delete {
+        pointer-events: initial;
+        opacity: 1;
+      }
+    }
+  }
+}

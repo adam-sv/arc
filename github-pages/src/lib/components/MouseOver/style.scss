@@ -1,0 +1,9 @@
+.ArcMouseOver {
+  position: absolute;
+  top: var(--ArcMouseOver-absolute-top);
+  left: var(--ArcMouseOver-absolute-left);
+  z-index: 100;
+  color: var(--surface-contrast);
+  background-color: var(--surface);
+  border-radius: var(--ARC-border-radius);
+}

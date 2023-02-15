@@ -1,0 +1,116 @@
+.ArcLineChart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
+  stroke: var(--border);
+  stroke-width: 1px;
+
+  &-border {
+    fill: transparent;
+  }
+
+  &-MouseXLine {
+    pointer-events: none;
+    stroke: var(--dark);
+    stroke-dasharray: 5;
+    stroke-width: 2;
+  }
+
+  &-YAxis {
+    &-label {
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    text {
+      font-size: 12px;
+      dominant-baseline: central;
+      fill: var(--surface-text);
+      stroke: transparent;
+
+      &.vertical {
+        dominant-baseline: central;
+        text-anchor: end;
+
+      }
+
+      &.horizontal {
+        dominant-baseline: text-before-edge;
+        text-anchor: middle;
+      }
+    }
+  }
+
+  &-XAxis {
+    line {
+      fill: transparent;
+      stroke: var(--surface-text);
+      stroke-width: 1px;
+    }
+
+    text {
+      font-size: 12px;
+      dominant-baseline: central;
+      fill: var(--surface-text);
+      stroke: none;
+      transform-origin: left center;
+      transform-box: fill-box;
+
+      &.vertical {
+        dominant-baseline: text-before-edge;
+        text-anchor: start;
+        // transform: rotate(45deg);
+      }
+
+      &.horizontal {
+        dominant-baseline: central;
+        text-anchor: end;
+      }
+    }
+  }
+
+  &-data rect {
+    fill: rgb(var(--primary-rgb) 0.3);
+    stroke: var(--surface-text);
+
+    &.is-hoverable {
+      cursor: pointer;
+      stroke: var(--surface-text);
+
+      &:hover {
+        stroke-width: 2px;
+      }
+    }
+  }
+}
+
+.ArcLineChart-line {
+  &-0 {
+    fill: var(--primary);
+    stroke: var(--primary);
+
+  }
+
+  &-1 {
+    fill: var(--tertiary);
+    stroke: var(--tertiary);
+  }
+
+  &-2 {
+    fill: var(--danger);
+    stroke : var(--danger)
+
+  }
+
+  &-3 {
+    fill: var(--warning);
+    stroke: var(--warning)
+  }
+
+  &-4 {
+    fill: var(--success);
+    stroke: var(--success);
+  }
+}

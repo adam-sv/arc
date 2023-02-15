@@ -1,0 +1,31 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+* {
+  overscroll-behavior-y: none;
+}
+
+#root {
+  > .ArcBackground {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  > .App {
+    display: flex;
+
+    > .ArcLeftNavigation .ArcButton.toggle-theme {
+      margin: 16px;
+    }
+  }
+
+  .route-container {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 1px;
+  }
+}

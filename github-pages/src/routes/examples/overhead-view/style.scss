@@ -1,0 +1,15 @@
+.OverheadViewStory {
+  max-height: 480px;
+
+  .ArcOverheadView {
+    height: fit-content;
+  }
+
+  .ArcOverheadView-Segment {
+    color: var(--background-text);
+
+    > rect {
+      fill: var(--dark);
+    }
+  }
+}

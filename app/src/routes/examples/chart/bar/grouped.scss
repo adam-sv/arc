@@ -1,0 +1,72 @@
+.GroupedBarChart {
+  .horizontal-toggle {
+    align-self: center;
+    width: initial;
+  }
+
+  .category-0 {
+    fill: var(--danger);
+  }
+
+  .category-1 {
+    fill: var(--warning);
+  }
+
+  .category-2 {
+    fill: var(--success);
+  }
+
+  .category-3 {
+    fill: var(--primary);
+  }
+
+  .category-4 {
+    fill: var(--secondary);
+  }
+}
+
+.Bottom {
+  fill: var(--primary)
+}
+
+.StackedBarChart {
+  .position-0 {
+    fill: var(--secondary);
+  }
+
+  .position-1 {
+    fill: var(--success);
+  }
+
+  .position-2 {
+    fill: var(--primary);
+  }
+
+  .position-3 {
+    fill: var(--danger);
+  }
+}
+
+.ArcLegendItem-1 {
+  .ArcChartContainer-legend-symbol {
+    background-color: var(--secondary);
+  }
+}
+
+.ArcLegendItem-2 {
+  .ArcChartContainer-legend-symbol {
+    background-color: var(--success);
+  }
+}
+
+.ArcLegendItem-3 {
+  .ArcChartContainer-legend-symbol {
+    background-color: var(--primary);
+  }
+}
+
+.ArcLegendItem-4 {
+  .ArcChartContainer-legend-symbol {
+    background: var(--danger);
+  }
+}

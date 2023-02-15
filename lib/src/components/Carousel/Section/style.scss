@@ -1,0 +1,41 @@
+.ArcCarousel-Section {
+  --title-block-height: 30px;
+
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+
+  .ArcCarousel-Section-title {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    height: var(--title-block-height);
+    font-family: var(--ARC-font-family);
+    font-size: 16px;
+    color: #919191;
+  }
+
+  .ArcCarousel-Section-entries {
+    display: flex;
+    flex: 0 0 auto;
+    padding: 20px 0;
+    background: #d2dce6;
+  }
+
+  &.ArcCarousel-Section--spacer {
+    flex: 1 1 1px;
+
+    .ArcCarousel-Section-entries {
+      flex: 1 1 auto;
+    }
+  }
+
+  .ArcCarousel-Section-divider {
+    display: flex;
+    flex: 0 0 auto;
+    width: 2px;
+    margin: 0 20px;
+    background: transparent;
+    background: white;
+  }
+}

@@ -1,0 +1,81 @@
+.ArcCarousel {
+  --teal: #14da9e;
+  --title-block-height: 30px;
+  --arrow-size: 20px;
+
+  position: relative;
+  display: flex;
+  margin: 20px 0;
+
+  .ArcCarousel-arrow {
+    position: absolute;
+    top: calc(var(--title-block-height) - calc(var(--arrow-size) / 2));
+    bottom: 0;
+    display: inline-block;
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    margin-top: auto;
+    margin-bottom: auto;
+    color: var(--teal);
+    border: solid var(--teal);
+    border-width: 0 2px 2px 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .ArcCarousel-arrow-click-target {
+      position: absolute;
+      top: calc(-1 * (var(--arrow-size) / 2));
+      right: calc(-1 * (var(--arrow-size) / 2));
+      bottom: calc(-1 * (var(--arrow-size) / 2));
+      left: calc(-1 * (var(--arrow-size) / 2));
+      cursor: pointer;
+    }
+  }
+
+  .ArcCarousel-arrow--left {
+    left: 20px;
+    padding: 10px;
+    transform: rotate(135deg);
+  }
+
+  .ArcCarousel-arrow--right {
+    right: 20px;
+    transform: rotate(-45deg);
+  }
+
+  &.not-expanded .expansion-bg {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.expanded .ArcCarousel-track {
+    overflow: hidden;
+    opacity: 0.5;
+  }
+
+  .ArcCarousel-track {
+    display: flex;
+    flex: 1 1 auto;
+    overflow: scroll;
+    transition: opacity 0.3s;
+    scroll-behavior: smooth;
+
+    .ArcCarousel-Section:last-of-type {
+      .ArcCarousel-Section-title,
+      .ArcCarousel-Section-entries {
+        padding-right: 20px;
+      }
+    }
+
+    .ArcCarousel-Section:first-of-type {
+      .ArcCarousel-Section-title,
+      .ArcCarousel-Section-entries {
+        padding-left: 20px;
+      }
+    }
+  }
+}

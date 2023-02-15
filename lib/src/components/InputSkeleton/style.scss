@@ -1,0 +1,164 @@
+/* Styles */
+.ArcInput {
+  // sizing
+  --ArcInput-label-size: var(--ARC-sizing-labelSize);
+  --ArcInput-horizontal-space: var(--ARC-sizing-horizontalSpace);
+  --ArcInput-font-size: var(--ARC-sizing-fontSize);
+  --ArcInput-vertical-space: calc(0.5 * var(--ARC-sizing-verticalSpace));
+
+  // colors
+  --ArcInput-background-color: var(--surface);
+  --ArcInput-text-color: var(--surface-text);
+  --ArcInput-border: 1px solid var(--border);
+  --ArcInput-focus-color: var(--primary);
+  --ArcInput-label-color: var(--ArcInput-text-color);
+  --ArcInput-disabled-background-color: var(--surface-disabled);
+
+  /* display */
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  min-height: var(--ArcInput-min-height);
+  font-size: var(--ArcInput-font-size);
+  line-height: normal;
+  text-align: left;
+  background-color: var(--ArcInput-background-color);
+
+  /* aesthetic */
+  border: var(--ArcInput-border);
+  border-radius: var(--ARC-border-radius);
+  box-shadow: none;
+
+  &.isFocused,
+  &:focus-within {
+    border-color: var(--primary);
+    outline: var(--primary) solid 1px;
+    outline-offset: 0;
+  }
+
+  &-controls {
+    display: flex;
+    flex: 0 0 fit-content;
+    align-items: center;
+    justify-content: center;
+    margin-left: var(--ArcInput-horizontal-space);
+  }
+
+  &-label-row,
+  &-input-row {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 var(--ArcInput-vertical-space);
+  }
+
+  label.withAction:hover {
+    cursor: pointer;
+    background: var(--background);
+  }
+
+  &-label-row {
+    padding-right: var(--ArcInput-horizontal-space);
+    font-size: var(--ArcInput-label-size);
+
+    label {
+      height: var(--ArcInput-label-size);
+      color: var(--ArcInput-label-color);
+    }
+
+    .ArcInput-error-label {
+      color: var(--danger);
+    }
+  }
+
+  &-input-row {
+    &.withInfo {
+      min-height: 18px;
+    }
+
+    &-textarea {
+      margin-right: 0;
+      margin-bottom: 0;
+
+      .ArcInfoIcon {
+        right: var(--ArcInput-horizontal-space);
+      }
+    }
+
+    /* targets: input, textarea, ... */
+    > input,
+    label,
+    > textarea {
+      width: 100%;
+      max-height: 50vh;
+      padding: 0;
+      margin-top: -1px;
+      margin-bottom: -1px;
+      font-family: var(--ARC-font-family);
+      font-size: var(--ArcInput-font-size);
+      line-height: normal;
+      color: var(--ArcInput-text-color);
+      background: transparent;
+      border: 0;
+      border-width: 0;
+      outline: none;
+
+      &::placeholder {
+        color: var(--ArcInput-text-color);
+        opacity: 0.7;
+      }
+    }
+
+    textarea {
+      min-height: 2rem;
+      resize: vertical;
+    }
+
+    input {
+      min-height: calc(var(--ArcInput-font-size) + 4px);
+    }
+
+    .ArcInfoIcon-PositioningPixel {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &-row-container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: var(--ArcInput-vertical-space) var(--ArcInput-horizontal-space) 0;
+  }
+
+  &.error {
+    border-color: var(--danger);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    > .ArcInput-row-container {
+      > .ArcInput-input-row {
+        cursor: not-allowed;
+
+        > label,
+        > input,
+        > textarea {
+          pointer-events: none;
+        }
+      }
+    }
+
+    > .ArcInput-controls {
+      cursor: not-allowed;
+
+      > * {
+        pointer-events: none;
+      }
+    }
+  }
+}

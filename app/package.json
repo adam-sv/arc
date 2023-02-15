@@ -1,0 +1,58 @@
+{
+  "name": "app",
+  "version": "1.1.0",
+  "dependencies": {
+    "prism-solarized-dark": "^1.0.1",
+    "prismjs": "^1.29.0",
+    "react-simple-code-editor": "^0.11.0",
+    "web-vitals": "^3.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.2",
+    "react-dom": ">=18",
+    "react-router-dom": ">=5"
+  },
+  "stylelint": {
+    "extends": [
+      "@adam-sv/stylelint-plugin"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@adam-sv/eslint-plugin/recommended"
+    ]
+  },
+  "prettier": "@adam-sv/prettier-plugin",
+  "scripts": {
+    "start": "yarn copy-src && craco start",
+    "build": "yarn copy-src && craco build",
+    "test": "yarn test:unit && yarn test:component",
+    "test:unit": "craco test --watchAll=false --passWithNoTests",
+    "test:integration": "cypress run --browser chrome",
+    "test:component": "cypress run --component --browser chrome",
+    "test:console": "cypress open",
+    "typescript": "tsc",
+    "lint": "eslint --fix --ext .ts,.tsx .",
+    "stylelint": "stylelint --fix \"src/**/*.scss\"",
+    "copy-src": "copyfiles \"./src/**/**\" ./public/"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0",
+    "copyfiles": "^2.4.1",
+    "cypress": "^11.2.0",
+    "eslint-webpack-plugin": "^3.2.0",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}

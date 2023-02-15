@@ -1,0 +1,10 @@
+.ArcLeftNavigation-topContent {
+  height: 70px;
+  color: var(--primary-text);
+  text-align: center;
+  background-color: var(--primary);
+}
+
+.is-open .ArcLeftNavigation-topContent {
+  padding: 0 calc(2 * var(--ARC-sizing-horizontalSpace));
+}

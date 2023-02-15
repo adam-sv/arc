@@ -1,0 +1,21 @@
+.ArcCarousel-Entry {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgb(255 255 255 / 40%);
+
+  > * {
+    pointer-events: none;
+  }
+
+  .ArcCarousel-Entry-divider {
+    display: flex;
+    flex: 0 0 auto;
+    width: 20px;
+    height: 100%;
+    background: transparent;
+  }
+}

@@ -1,0 +1,29 @@
+.ArcTreeBrowser {
+  --ArcTreeBrowser-verticalSpace: calc(0.5 * var(--ARC-sizing-verticalSpace));
+
+  padding: var(--ArcTreeBrowser-verticalSpace) 0;
+
+  &.ArcInput {
+    z-index: 100;
+    margin-bottom: -1px;
+  }
+
+  .ArcTree {
+    border-right: none;
+    border-left: none;
+  }
+
+  &-controls {
+    display: flex;
+    flex: 0 0 fit-content;
+    gap: var(--ARC-sizing-horizontalSpace);
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--ArcTreeBrowser-verticalSpace);
+  }
+}
+
+.ArcModal .ArcTreeBrowser {
+  width: 500px;
+  max-width: 100vw;
+}

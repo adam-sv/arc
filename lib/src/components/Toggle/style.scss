@@ -1,0 +1,60 @@
+.ArcToggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-Horizontal {
+    flex-direction: row;
+  }
+
+  &-Vertical {
+    flex-direction: column;
+  }
+}
+
+.ArcToggle {
+  width: 50px;
+  height: 25px;
+  background-color: var(--border-shade);
+  border: 1px solid var(--border-shade);
+  border-radius: 20px;
+  transition: background-color 200ms;
+
+  &-Vertical {
+    margin-top: 10px;
+  }
+
+  &-Horizontal {
+    margin-left: 10px;
+  }
+
+  &-Button {
+    position: relative;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    margin-top: 0;
+    background-color: var(--surface);
+    border: 1px solid;
+    border: var(--border-shade);
+    border-radius: 50%;
+    transition: left 200ms;
+
+    &-Toggled {
+      left: 24px;
+      border: var(--primary);
+    }
+  }
+  
+  &-Toggled {
+    background-color: var(--primary)
+  }
+
+  &:focus {
+    outline: none;
+
+    .ArcToggle-Button {
+      border: 2px solid var(--primary);
+    }
+  }
+}

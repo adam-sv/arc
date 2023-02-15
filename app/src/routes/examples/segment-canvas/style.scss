@@ -1,0 +1,38 @@
+.segment-canvas-story-panel {
+  flex: 1 1 auto;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-row {
+    display: flex;
+  }
+
+  .ArcCheckboxGroup:not(:first-child) {
+    margin-left: var(--ARC-sizing-horizontalSpace);
+  }
+
+  .segment-y-origin {
+    fill: rgba(var(--primary-components) / 20%);
+  }
+
+  .segment-inset-outline {
+    span {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(var(--primary-components) / 20%);
+      border: 1px dashed black;
+    }
+  }
+
+  .segment-extents-outline {
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

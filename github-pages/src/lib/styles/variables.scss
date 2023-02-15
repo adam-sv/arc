@@ -1,0 +1,50 @@
+@mixin sizing-calcs() {
+  --ARC-sizing-horizontalSpace: 
+    calc(var(--ARC-sizing-space-base) * var(--ARC-sizing-space-factor));
+  --ARC-sizing-verticalSpace: 
+    calc(var(--ARC-sizing-space-base) * var(--ARC-sizing-space-factor));
+  --ARC-sizing-space: 
+    var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+  --ARC-sizing-fontSize: 
+    calc(var(--ARC-sizing-font-size-base) * var(--ARC-sizing-font-size-factor));
+  --ARC-sizing-labelSize: 
+    calc(var(--ARC-sizing-font-size-base) * 0.85 * var(--ARC-sizing-font-size-factor));
+}
+
+.ArcSizeDefault {
+  --ARC-sizing-font-size-factor: 1;
+  --ARC-sizing-spacing-factor: 1;
+  @include sizing-calcs;
+}
+
+.ArcSizeCompact {
+  --ARC-sizing-font-size-factor: 0.8;
+  --ARC-sizing-spacing-factor: 0.75;
+  @include sizing-calcs;
+}
+
+.ArcSizeLarge {
+  --ARC-sizing-font-size-factor: 1.2;
+  --ARC-sizing-spacing-factor: 1.2;
+  @include sizing-calcs;
+}
+
+:root {
+  --ARC-border-radius: 4px;
+  --ARC-box-shadow: 0 0 4px rgb(0 0 0 / 10%);
+  --ARC-font-family: lato, sans-serif;
+  --ARC-boxShadow-element-focus: 0 2px 4px 0;
+  --ARC-boxShadow-fakeBorder: 1px 0 0 0 var(--border), -1px 0 0 0 var(--border),
+    0 1px 0 0 var(--border), 0 -1px 0 0 var(--border);
+  --ARC-modal-background-rgba: linear-gradient(
+    rgb(0 0 0 / 10%),
+    rgb(0 0 0 / 50%) 75%,
+    rgb(0 0 0 / 75%));
+
+  // Sizing calcs
+  --ARC-sizing-font-size-factor: 1;
+  --ARC-sizing-font-size-base: 14px;
+  --ARC-sizing-space-factor: 1;
+  --ARC-sizing-space-base: 8px;
+  @include sizing-calcs;
+}

@@ -1,0 +1,15 @@
+.ContextMenuStory {
+  .StoryRow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    padding: 0 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    &.hasMenu:hover {
+      background: var(--surface-hover);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.draggable-buttons-story {
+  display: flex;
+  flex-direction: column;
+
+  .ArcDroppable:not(:first-child) {
+    margin-top: var(--ARC-sizing-verticalSpace);
+  }
+
+  .drag-hover {
+    $drag-color: var(--drag-color);
+
+    background: rgba($drag-color, 0.5);
+  }
+}

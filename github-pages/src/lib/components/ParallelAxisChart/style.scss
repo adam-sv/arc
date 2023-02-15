@@ -1,0 +1,104 @@
+$font-size:  calc(var(--ARC-sizing-fontSize) * 1.5);
+
+.ArcParallelAxisChart {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--dark);
+  stroke-width: 1px;
+  
+  > svg {
+    flex: 1 1 auto;
+    margin: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+    overflow: visible;
+  }
+
+  .ArcParallelAxisChart-Line {
+    stroke: rgb(var(--primary-components) / 20%);
+    stroke-width: 3px;
+
+    &.filtered {
+      stroke: rgb(var(--medium-components) / 20%);
+      stroke-width: 1px;
+    }
+  }
+}
+
+.ArcParallelAxisChart-Column {
+  foreignObject {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .ArcSlider.ArcRangeSlider {
+    --ArcSlider-fill: rgb(var(--primary-components) / 80%);
+    --ArcSlider-track: transparent;
+    --ARC-box-shadow: none;
+
+    padding: 0;
+    margin-top: calc(-1 * var(--ArcSlider-thumb-size) / 2);
+    margin-left: var(--ArcSlider-thumb-overflow);
+    border: none;
+    outline: none;
+    
+    .min-max-block,
+    .title-row {
+      display: none;
+    }
+  }
+}
+
+.ArcParallelAxisChart-Column-data-circle {
+  pointer-events: none;
+}
+
+.ArcParallelAxisChart-Column-tick-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+
+  &.ArcParallelAxisChart-Column-top-tick {
+    transform: translateY(0);
+  }
+
+  &.ArcParallelAxisChart-Column-bottom-tick {
+    transform: translateY(-100%);
+  }
+}
+
+.ArcParallelAxisChart-Column-last-column .ArcParallelAxisChart-Column-tick-label {
+  right: 0; // on the last column, labels are on the inside, so we need to change the anchor
+  left: initial;
+}
+
+.ArcParallelAxisChart-Column-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+  margin-bottom: var(--ARC-sizing-verticalSpace);
+  margin-left: var(--ARC-sizing-horizontalSpace);
+  font-size: $font-size;
+  font-weight: bold;
+  color: var(--primary);
+  white-space: nowrap;
+  background: rgb(255 255 255 / 75%);
+  border-radius: var(--ARC-border-radius);
+  transform: rotate(-90deg) translateX(calc($font-size + var(--ARC-sizing-verticalSpace)));
+  transform-origin: 0% 0%;
+}
+
+.ArcParallelAxisChart-Column-last-column .ArcParallelAxisChart-Column-label {
+  margin-left: calc(-1 * var(--ARC-sizing-horizontalSpace));
+  transform: 
+    rotate(-90deg) 
+    translateY(-100%) 
+    translateX(calc($font-size + var(--ARC-sizing-verticalSpace)));
+}

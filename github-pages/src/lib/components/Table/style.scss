@@ -1,0 +1,101 @@
+.ArcTable {
+  --padding: 8px;
+  --cell-background: var(--surface);
+  --cell-alternating-background: var(--light);
+  --cell-highlight-background: var(--light-shade);
+  --cell-hover-background: var(--medium-hover);
+
+  display: flex;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  font-size: 12px;
+  border: 1px solid var(--border);
+
+  td:not(:last-child) {
+    border-right: 1px solid var(--border);
+  }
+
+  .Checkbox:hover {
+    background: none;
+  }
+
+  table {
+    z-index: 0;
+    flex: 1 1 auto;
+    height: 100%;
+    border-collapse: collapse;
+  }
+
+  &.no-break table {
+    flex: 1 0 auto;
+  }
+
+  &.horizontal-collapse table {
+    word-break: break-all;
+  }
+
+  .top-spacer,
+  .bottom-spacer {
+    td {
+      padding: 0;
+    }
+  }
+}
+
+.ArcTable-Cell {
+  box-sizing: border-box;
+  padding: var(--padding);
+
+  &.highlighted {
+    background: var(--cell-highlight-background);
+  }
+
+  &.hover {
+    background: var(--cell-hover-background);
+  }
+
+  &:not(:last-of-type) {
+    border-right: var(--border);
+  }
+}
+
+.ArcTable-Header {
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: var(--padding);
+    color: var(--secondary-text);
+    cursor: default;
+    background: var(--secondary);
+
+    &.highlighted {
+      background: var(--secondary-hover);
+    }
+
+    &:not(:last-of-type) {
+      border-right: var(--border);
+    }
+
+    &.sortable {
+      cursor: pointer;
+
+      &:hover {
+        background: var(--secondary-hover);
+      }
+    }
+  }
+}
+
+.ArcTable-Row {
+  background: var(--cell-background);
+  border-bottom: var(--border);
+
+  &:nth-child(2n) {
+    background: var(--cell-alternating-background);
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+}
