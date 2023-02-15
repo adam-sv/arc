@@ -1,0 +1,35 @@
+.ArcNode,
+.SelectedNode {
+  font-family: var(--ARC-font-family);
+  text-align: center;
+  cursor: pointer;
+  fill: var(--surface);
+  stroke: var(--medium);
+  stroke-width: 2px;
+
+  text {
+    font-family: var(--ARC-font-family);
+    font-size: var(--ARC-sizing-labelSize);
+    text-anchor: middle;
+    fill: var(--surface-text);
+    stroke: var(--surface-text);
+    stroke-width: 0.5px;
+  }
+
+  .Port text {
+    font-size: calc(var(--ARC-sizing-labelSize) - 2px);
+    dominant-baseline: central;
+  }
+
+  .Ports-inputPorts .Port-text {
+    text-anchor: start;
+  }
+
+  .Ports-outputPorts .Port-text {
+    text-anchor: end;
+  }
+}
+
+.SelectedNode {
+  fill: var(--success);
+}

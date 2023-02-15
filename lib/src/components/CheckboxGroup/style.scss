@@ -1,0 +1,73 @@
+.ArcCheckboxGroup {
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    margin: var(--ARC-sizing-verticalSpace) 0;
+    
+    input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin: 2px 0 0;
+      border: 1px solid var(--border);
+      border-radius: var(--ARC-border-radius);
+      outline: none;
+      appearance: none;
+
+      &:focus-within {
+        border-color: var(--primary);
+        outline: var(--primary) solid 2px;
+        outline-offset: 0;
+      }
+      
+      &[type=checkbox]:checked {
+        background:var(--primary);
+
+        &::after {
+          color: var(--surface);
+          content: '\2713';
+        }
+      }
+    }
+    
+    label {
+      margin: 0 0 0 var(--ARC-sizing-horizontalSpace)
+    }
+  }
+}
+
+.ArcCheckboxGroup.ArcCheckboxGroup-button-type .ArcCheckboxGroup-item {
+  font-weight: bold;
+  color: var(--ArcButton-borderColor);
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid var(--ArcButton-borderColor);
+  transition: color 0.3s, background-color 0.3s;
+
+  input {
+    display: none;
+  }
+
+  label {
+    flex: 1 0 auto;
+    padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &-checked {
+    color: var(--ArcButton-hover-textColor);
+    background-color: var(--ArcButton-hover);
+  }
+
+  &:hover {
+    color: var(--ArcButton-hover-textColor);
+    background-color: var(--ArcButton-hover);
+  }
+}

@@ -1,0 +1,220 @@
+.ArcSlider {
+  // sizing
+  --ArcSlider-font-size: var(--ARC-sizing-fontSize);
+  --ArcSlider-label-size: var(--ARC-sizing-labelSize);
+  --ArcSlider-horizontal-space: var(--ARC-sizing-horizontalSpace);
+  --ArcSlider-vertical-space: var(--ARC-sizing-verticalSpace);
+  --ArcSlider-track-thickness: calc(8px * var(--ARC-sizing-font-size-factor));
+  --ArcSlider-thumb-size-factor: 2;
+  --ArcSlider-thumb-size: 
+    calc(var(--ArcSlider-track-thickness) * var(--ArcSlider-thumb-size-factor));
+  --ArcSlider-half-thumb: calc(var(--ArcSlider-thumb-size) * 0.5);
+  --ArcSlider-half-track: calc(var(--ArcSlider-track-thickness) * 0.5);
+  --ArcSlider-thumb-overflow: calc(var(--ArcSlider-half-thumb) - var(--ArcSlider-half-track));
+  --ArcSlider-track-length: 100%;
+
+  // colors
+  --ArcSlider-fill: var(--primary);
+  --ArcSlider-track: var(--border);
+  --ArcSlider-focus: var(--primary);
+  --ArcSlider-focus-shade: var(--primary-shade);
+  --ArcSlider-thumb: white;
+  --ArcSlider-thumb-border: var(--border);
+  --ArcSlider-thumb-focus: var(--ArcSlider-focus);
+  --ArcSlider-thumb-focus-border: var(--ArcSlider-focus-shade);
+  
+  display: flex;
+  flex-direction: column;
+  padding: var(--ArcSlider-vertical-space) var(--ArcSlider-horizontal-space);
+  font-size: var(--ArcSlider-font-size);
+  border: 1px solid var(--border);
+  border-radius: var(--ARC-border-radius);
+
+  &:focus-within {
+    border-color: var(--primary);
+    outline: 1px solid var(--primary);
+  }
+
+  .slider-and-labels {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slider-sizing-wrapper {
+    display: flex;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .min-max-block,
+  .title-row {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--ArcSlider-vertical-space);
+  }
+
+  .min-max-block {
+    font-size: var(--ArcSlider-label-size);
+  }
+
+  .title-row :not(:first-child) { // slider value + optional unit
+    font-weight: bold;
+  }
+
+  @mixin track() {
+    width: 100%;
+    height: 100%;
+
+    /* get rid of Firefox track background */
+    background: none;
+    box-shadow: var(--ARC-box-shadow);
+  }
+
+  @mixin thumb() {
+    width: var(--ArcSlider-thumb-size);
+    height: var(--ArcSlider-thumb-size);
+    margin-top: calc(-1 * var(--ArcSlider-thumb-overflow));
+    pointer-events: auto;
+    background: var(--ArcSlider-thumb);
+
+    /* get rid of Firefox thumb border */
+    border: none;
+    border: 1px solid var(--ArcSlider-thumb-border);
+
+    /* margin-left: +20px; */
+    border-radius: 100vh;
+    box-shadow: var(--ARC-box-shadow);
+  }
+
+  @mixin vertical-thumb() {
+    margin-left: calc(-1 * var(--ArcSlider-thumb-overflow));
+  }
+
+  input[type=range] {
+    /* Validated */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    margin: 0;
+    pointer-events: none;
+    background: none;
+
+    &::-webkit-slider-runnable-track,
+    &::-webkit-slider-thumb,
+    & {
+      appearance: none;
+    }
+
+    &:focus {
+      z-index: 2;
+      background: initial;
+
+      /* ensure the thumb is rendering with a different color when focused */
+      --ArcSlider-thumb: var(--ArcSlider-thumb-focus);
+      --ArcSlider-thumb-border: var(--ArcSlider-thumb-focus-border);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      @include track;
+    }
+
+    &::-moz-range-track {
+      @include track;
+    }
+
+    &::-webkit-slider-thumb {
+      @include thumb;
+    }
+
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+  }
+
+  /* Validated */
+  .slider {
+    position: relative;
+    display: flex;
+    width: var(--ArcSlider-track-length);
+    height: var(--ArcSlider-track-thickness);
+    margin-top: calc(var(--ArcSlider-thumb-size) * 0.5);
+    margin-bottom: var(--ArcSlider-thumb-overflow);
+    font-family: "ubuntu mono", consolas, monaco, monospace;
+    pointer-events: all;
+    background: var(--ArcSlider-track);
+    border-radius: 100vh;
+
+    --thumb-fill-offset: 
+      calc(var(--ArcSlider-thumb-size) - var(--ArcSlider-thumb-size) * var(--filled-range-factor));
+    --range: calc(var(--max) - var(--min));
+    --filled-range: calc(var(--b) - var(--a));
+    --filled-range-factor: calc(var(--filled-range) / var(--range));
+    --filled-bar-size: calc(var(--filled-range-factor) * var(--ArcSlider-track-length));
+
+    &::before {
+      /* WHY THUMB OFFSET IS REQUIRED
+      The native thumb behaviour caused thumb to be left aligned at MIN
+      (i.e. left side of thumb touches left edge of background bar)
+      and thumb is right-aligned at MAX
+      (i.e. right side of thumb touches right edge of background bar
+      so as the bar fills, it slowly gets off by one thumb-size
+      we have to counteract this effect on our fill bar */
+      width: calc(var(--filled-bar-size) + var(--thumb-fill-offset));
+      content: '';
+      background: var(--ArcSlider-fill);
+      border-radius: 100vh;
+    }
+    
+    &.two-handles::before {
+      --unfilled-left-range: 
+        calc(var(--a) - var(--min));
+      --unfilled-left-range-factor: 
+        calc(var(--unfilled-left-range) / var(--range));
+      --unfilled-left-size: 
+        calc(var(--unfilled-left-range-factor) * var(--ArcSlider-track-length));
+      
+      /* WHY THUMB OFFSET IS REQUIRED: See note above. */
+      --thumb-unfilled-left-offset: 
+        calc(var(--ArcSlider-thumb-size) * var(--unfilled-left-range-factor));
+
+      margin-left: calc(var(--unfilled-left-size) - var(--thumb-unfilled-left-offset));
+    }
+  }
+
+  &.ArcSlider-vertical {
+    --ArcSlider-track-length: 200px;
+
+    .slider-and-labels {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      height: var(--ArcSlider-track-length);
+    }
+
+    .min-max-block {
+      flex-direction: column-reverse;
+      margin-bottom: 0;
+      margin-left: var(--ArcSlider-horizontal-space);
+    }
+
+    .slider {
+      width: var(--ArcSlider-track-length);
+      margin-top: 0;
+      transform: rotate(-90deg) translateX(-100%);
+      transform-origin: 0 0;
+    }
+
+    .slider-sizing-wrapper {
+      height: 100%;
+      margin-right:calc( -1 * (var(--ArcSlider-track-length) - var(--ArcSlider-track-thickness)));
+    }
+  }
+}

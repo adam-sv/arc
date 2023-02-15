@@ -1,0 +1,42 @@
+.ArcStretchyPointer {
+  --button-background-color: #f8e71c;
+  --gap: 2ch;
+  --overflow-amount: 1em;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-auto-flow: column;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: calc(2 * var(--ARC-sizing-verticalSpace)) var(--ARC-sizing-horizontalSpace);
+  overflow: visible;
+  font-family: var(--ARC-font-family);
+  font-size: var(--ARC-sizing-fontSize, 1.25em);
+  font-weight: bold;
+  color: var(--black);
+
+  /* padding: var(--padding, 0.25em 1em); */
+  color: var(--button-color, var(--black));
+  text-align: center;
+  text-decoration: var(--text-decoration, none);
+  text-transform: capitalize;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--button-background-color, var(--bluish-green));
+  border: var(--button-border, none);
+  border-radius: var(--button-border-radius, 100vw);
+  box-shadow: var(--box-shadow, 0 0.1em 0.1em hsl(0deg 0% 0% / 10%));
+  transition: ease all 1s;
+
+  &.is-expanded {
+    gap: calc(var(--gap) + var(--overflow-amount, 0));
+    width: calc(100% + var(--overflow-amount, 0));
+  }
+
+  &.is-expanded.is-left {
+    margin-left: calc(-1 * var(--overflow-amount, 0));
+  }
+}

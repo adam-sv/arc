@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "declaration": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "outDir": "./dist"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/**.test.ts"
+  ],
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "synchronousWatchDirectory": true,
+    "excludeDirectories": [
+      "**/**node_modules",
+      "dist"
+    ]
+  }
+}

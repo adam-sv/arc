@@ -1,0 +1,136 @@
+$solarized-dark-base00: #657b83;
+$solarized-dark-base01: #586e75;
+$solarized-dark-base02: #073642;
+$solarized-dark-base03: #002b36;
+$solarized-dark-base0: #839496;
+$solarized-dark-base1: #93a1a1;
+$solarized-dark-base2: #eee8d5;
+$solarized-dark-base3: #fdf6e3;
+$solarized-dark-yellow: #b58900;
+$solarized-dark-orange: #cb4b16;
+$solarized-dark-red: #dc322f;
+$solarized-dark-magenta: #d33682;
+$solarized-dark-violet: #6c71c4;
+$solarized-dark-blue: #268bd2;
+$solarized-dark-cyan: #2aa198;
+$solarized-dark-green: #859900;
+
+.example-view {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 1px;
+  overflow-x: auto;
+
+  .example-explorer {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+    border-right: 1px solid var(--border);
+
+    .ArcTree {
+      overflow: auto;
+    }
+  }
+
+  .example-body {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .example-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .Example {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 1px;
+    padding: 16px;
+    overflow: auto;
+
+    > h3 {
+      text-align: center;
+    }
+
+    .content-row,
+    .content-column {
+      display: flex;
+      flex: 1 1 auto;
+      align-self: stretch;
+      min-height: 1px;
+    }
+
+    .content-column {
+      flex-direction: column;
+    }
+
+    .code-container,
+    .component-container {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+
+    .code-container {
+      min-height: 400px;
+      overflow-y: overlay;
+      color: $solarized-dark-base0;
+      background: $solarized-dark-base03;
+    }
+
+    .component-container {
+      align-items: center;
+
+      > .ArcPanel {
+        margin: 0;
+      }
+    }
+
+    .content-column > .component-container {
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .content-row > .component-container {
+      align-items: stretch;
+      justify-content: flex-start;
+      margin-right: 16px;
+      margin-bottom: 0;
+    }
+
+    .content-row > .code-container {
+      flex: 1 1 50%;
+    }
+  }
+}
+
+.ArcPanel.large {
+  width: 100%;
+}
+
+.ArcPanel.ExamplesBlurb {
+  max-width: 650px;
+  height: fit-content;
+  padding-bottom: 1rem;
+  margin: 20vh auto;
+
+  .ExamplesBlurb-text {
+    width: 600px;
+    max-width: 100%;
+    margin: 3px auto;
+    font-size: 14px;
+
+    ul {
+      padding: calc(1.5 * var(--ARC-sizing-verticalSpace)) 
+        calc(2 * var(--ARC-sizing-horizontalSpace));
+    }
+  }
+}

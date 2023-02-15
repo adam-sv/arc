@@ -1,0 +1,115 @@
+.ArcButton,
+.ArcCheckboxGroup-button-type { // checkboxes styled like buttons need access to button vars
+  --ArcButton-backgroundColor: var(--primary);
+  --ArcButton-borderColor: var(--primary-shade);
+  --ArcButton-textColor: var(--primary-text);
+
+  /* disabled */
+  --ArcButton-disabled: var(--primary-disabled);
+  --ArcButton-disabled-borderColor: var(--ArcButton-disabled);
+  --ArcButton-disabled-textColor: var(--ArcButton-textColor);
+
+  /* hover */
+  --ArcButton-hover: var(--primary-hover);
+  --ArcButton-hover-borderColor: var(--ArcButton-hover);
+  --ArcButton-hover-textColor: var(--ArcButton-textColor);
+
+  /* icons */
+  --icon-color: var(--ArcButton-textColor);
+}
+
+.ArcButton {
+  /* sizing and alignment */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  padding: var(--ARC-sizing-verticalSpace) var(--ARC-sizing-horizontalSpace);
+  font-size: var(--ARC-sizing-fontSize);
+  font-weight: 500;
+  line-height: normal;
+  color: var(--ArcButton-textColor);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--ArcButton-backgroundColor);
+  border-color: var(--ArcButton-borderColor);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: var(--ARC-border-radius);
+  outline: none;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+
+  svg { 
+    // MonoIcon, etc...
+    transition: stroke 0.3s, fill 0.3s, background-color 0.3s, border-color 0.3s;
+  }
+
+  &-disabled {
+    --icon-color: var(--ArcButton-disabled-textColor);
+
+    color: var(--ArcButton-disabled-textColor);
+    cursor: not-allowed;
+    background-color: var(--ArcButton-disabled);
+    border-color: var(--ArcButton-disabled-borderColor);
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover:not(.ArcButton-disabled),
+  &:active:not(.ArcButton-disabled) {
+    --icon-color: var(--ArcButton-hover-textColor);
+
+    color: var(--ArcButton-hover-textColor);
+    background-color: var(--ArcButton-hover);
+    border-color: var(--ArcButton-hover-borderColor);
+  }
+
+  &-success {
+    --ArcButton-backgroundColor: var(--success);
+    --ArcButton-borderColor: var(--success-shade);
+    --ArcButton-disabled: var(--success-disabled);
+    --ArcButton-hover: var(--success-hover);
+    --ArcButton-textColor: var(--success-text);
+  }
+
+  &-secondary {
+    --ArcButton-backgroundColor: var(--secondary);
+    --ArcButton-borderColor: var(--secondary-shade);
+    --ArcButton-disabled: var(--secondary-disabled);
+    --ArcButton-hover: var(--secondary-hover);
+    --ArcButton-textColor: var(--secondary-text);
+  }
+
+  &-tertiary {
+    --ArcButton-backgroundColor: var(--tertiary);
+    --ArcButton-borderColor: var(--tertiary-shade);
+    --ArcButton-disabled: var(--tertiary-disabled);
+    --ArcButton-hover: var(--tertiary-hover);
+    --ArcButton-textColor: var(--tertiary-text);
+  }
+
+  &-warning {
+    --ArcButton-backgroundColor: var(--warning);
+    --ArcButton-borderColor: var(--warning-shade);
+    --ArcButton-disabled: var(--warning-disabled);
+    --ArcButton-hover: var(--warning-hover);
+    --ArcButton-textColor: var(--warning-text);
+  }
+
+  &-danger,
+  &-error {
+    --ArcButton-backgroundColor: var(--danger);
+    --ArcButton-borderColor: var(--danger-shade);
+    --ArcButton-disabled: var(--danger-disabled);
+    --ArcButton-hover: var(--danger-hover);
+    --ArcButton-textColor: var(--danger-text);
+  }
+
+  &:focus {
+    box-shadow: var(--ARC-element-focus-shadow) rgb(var(--primary-rgb) 0.4);
+  }
+}

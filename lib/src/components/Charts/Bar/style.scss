@@ -1,0 +1,111 @@
+.ArcBarChart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: visible;
+  border: none;
+  stroke: var(--border);
+  stroke-width: 1px;
+
+  &-AxisControl {
+    position: absolute;
+    right: 0;
+    width: max-content;
+    height: min-content;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 500ms;
+
+    // background-color: var(--surface);
+  }
+
+  &-AxisControl:hover {
+    opacity: 1;
+  }
+
+  &-border {
+    fill: transparent;
+  }
+
+  &-dependentAxis text {
+    font-size: 12px;
+    dominant-baseline: central;
+    fill: var(--surface-text);
+    stroke: transparent;
+
+    &.vertical {
+      dominant-baseline: central;
+      text-anchor: end;
+
+    }
+
+    &.horizontal {
+      dominant-baseline: text-before-edge;
+      text-anchor: middle;
+    }
+  }
+
+  &-independentAxis {
+    line {
+      fill: transparent;
+      stroke: var(--surface-text);
+      stroke-width: 1px;
+    }
+
+    text {
+      font-size: 8px;
+      dominant-baseline: central;
+      text-anchor: end;
+      fill: var(--surface-text);
+      stroke: none;
+      transform-origin: right center;
+      transform-box: fill-box;
+
+      &.vertical {
+        dominant-baseline: hanging;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &-data rect {
+    fill: rgb(var(--primary-rgb) 0.3);
+    stroke: var(--surface-text);
+
+    &.ArcBarChart-bar-mousedover {
+      stroke: var(--strokeColor)
+      // stroke-width: 2px;
+    }
+
+    &.is-hoverable {
+      cursor: pointer;
+      stroke: var(--surface-text);
+
+      &:hover {
+        stroke-width: 2px;
+      }
+    }
+  }
+
+  &-SecondaryLineData {
+    text {
+      font-size: 12px;
+      text-decoration: bold;
+      dominant-baseline: middle;
+      text-anchor:start;
+      fill: var(--surface-text);
+      stroke: none;
+      transform-origin: right center;
+      transform-box: fill-box;
+    }
+
+    line {
+      stroke: black
+    }
+
+    &-PercentLine {
+      stroke: black
+    }
+  }
+}

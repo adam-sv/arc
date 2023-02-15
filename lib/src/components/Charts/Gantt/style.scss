@@ -1,0 +1,62 @@
+.ArcGantt {
+  --ArcGantt-textColor: var(--surface-text);
+  --ArcGantt-barFillColor: var(--secondary);
+  --ArcGantt-barFillColor-hover: var(--secondary-hover);
+  --ArcGantt-barStrokeColor: var(--medium);
+  --ArcGantt-barStrokeColor-hover: var(--dark);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // overflow: hidden;
+  border: none;
+  stroke: var(--border);
+  stroke-width: 1px;
+
+  &-border {
+    fill: transparent;
+  }
+
+  &-yAxis text {
+    font-size: 12px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+    fill: var(--surface-text);
+    stroke: transparent;
+  }
+
+  &-xAxis {
+    line {
+      fill: transparent;
+      stroke: var(--ArcGantt-gridColor);
+      stroke-width: 1px;
+    }
+
+    text {
+      font-size: 8px;
+      dominant-baseline: middle;
+      text-anchor: end;
+      fill: var(--ArcGantt-textColor);
+      stroke: none;
+      transform: rotate(-45deg);
+      transform-origin: right center;
+      transform-box: fill-box;
+    }
+  }
+
+  &-data rect {
+    fill: var(--ArcGantt-barFillColor);
+    stroke: var(--ArcGantt-barStrokeColor);
+
+    &.is-hoverable {
+      cursor: pointer;
+      stroke: var(--ArcGantt-barStrokeColor);
+
+      &:hover {
+        fill: var(--ArcGantt-barFillColor-hover, var(--ArcGantt-barFillColor));
+        stroke-width: 2px;
+      }
+    }
+  }
+}

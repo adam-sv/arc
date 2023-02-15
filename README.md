@@ -1,12 +1,14 @@
 # ARC
+[https://adam-sv.github.io/arc/](View Components on GitHub Pages)
 
-[GitHub Pages](https://adam-sv.github.io/arc/)
-
-ARC (ADAM React Components) is a React component library built with TypeScript. Typescript >= 3.8 is required to use the library as it has `export type { ... }` statements, introduced in ts3.8.
+ARC is a React component library, built on TypeScript, React, React-Router-DOM, and D3, offering a variety of input, layout, and visualization capabilities.
 
 ## Usage
+### Inside Project ADAM at Acubed
 
-### From https://registry.npmjs.org/
+Look for jobs on the ADAM team or at Acubed here: https://acubed.airbus.com/careers/ :)
+
+### From npmjs.org
 
 We have published ARC to the public NPM under the @adam-sv organization.
 
@@ -26,6 +28,55 @@ Include arc's CSS:
 import '@adam-sv/arc/dist/arc.css';
 ```
 
+#### Theming
+
+To generate a theme, use the `generateThemeVariableString` function provided. `generateThemeVariableString` will output a formatted string that can be copy-pasted into your own css file.
+
+You can specify colors by passing an `IThemeProps` object (below). Any unspecifed colors
+will default to our in-house colors.
+
+Text colors are calculated automatically based on the color the text is displayed upon -
+right now the only options are white and black, as per industry usability guidelines.
+
+```
+export interface IThemeProps {
+  background?: string; // background color of the app
+  surface?: string; // color of surfaces, such as panels
+  border?: string; // color of borders found on UI components like buttons and forms
+  light?: string; // light grey (same Hue and Saturation of medium, higher Brightness)
+  medium?: string; // medium grey (doesn't need to be a pure grey, often tinted slightly blue)
+  dark?: string; // dark grey (same Hue and Saturation of medium, lower Brightness)
+  primary?: string; // main branding color (usually bold)
+  secondary?: string; // secondary branding color (often a bit softer than primary)
+  tertiary?: string; // branding color (usually an accent color, rarely used)
+  danger?: string; // color of errors, delete buttons, etc. (red)
+  warning?: string; // color of warning messages (orange)
+  success?: string; // color of sucess messages, submit buttons, etc. (green)
+}
+```
+
+### Using the theming in your component
+
+If you are writing a component, you should make sure to use the theming variables instead of hard-coding colors.
+
+For example, when making a border, instead of writing `border: 1px solid black`, write `border: 1px solid var(--border)`; then, when the theme switches, your component will automatically update.
+
+### Scoping theme variable overrides
+
+You may override theme variables on a scoped basis without affecting the overall theme you've generated.
+
+Example: 
+By default `--ArcInput-borderColor` is set to `--border-color`.
+
+If only special ArcInput borders should be set to another css variable, you may scope your override to just the `.ArcInput.special` css class:
+
+```
+.ArcInput.special {
+  --ArcInput-borderColor: var(--some-other-color-variable);
+}
+```
+
+
 ## Components & Types
 
 Import components and types:
@@ -34,112 +85,8 @@ import { Input } from '@adam-sv/arc';
 import type { IInputProps } from '@adam-sv/arc';
 ```
 
-## Developing
-
+## Installation
+Install project from project root:
 ```
-yarn install
-yarn storybook
+~/arc/ % yarn
 ```
-
-## TypeScript Conventions
-
-We try to enforce a few conventions around the library.
-
-### Explicit Naming
-
-Any time you have a value in the TypeScript world, you can mouseover to see its type. Accordingly, good namings are critical. Names should be virtually unique across the application. 
-
-For a motivating example, let's look at a specific portion of the `Form/types.ts#IFormField` type:
-
-```typescript
-export interface IFormField {
-  // Optionalize removes the union of the two types: Optionalize<{ test: string }, { test: string }> = { test?: string }
-  // We use it here to optionalize the change handlers of each component type we render, since we will supply those
-  componentProps?: Optionalize<IInputProps, { onChange: IInputProps["onChange"] }>
-    | Optionalize<IDropdownProps, { onChange: IDropdownProps["onChange"] }>
-    | Optionalize<ITreeBrowserProps, { onChange: ITreeBrowserProps["onChange"] }>
-    | IFormAccordionProps
-    | IFormObjectListProps
-    | { label: string };
-}
-```
-
-Imagine instead of explicitly naming these types, the user instead named each component's props interface `IViewProps`. Then, this code is actually impossible to accomplish without assigning type aliases to each component's `IViewProps`.
-
-There are many other situations where this type of explicit naming makes a consuming developer's type-seeking mouseover much more valuable. Use explicit & unique-where-possible type names.
-
-### Component Folder Structure
-
-Components usually have a folder structure similar to this:
-```
-MyComponent
-|- index.tsx
-|- style.css
-|- types.ts
-```
-
-Maybe a `view.tsx` file appears sometimes, or a `types.ts` file is unneeded for super simple components. The two "strict" requirements are:
-
-1. `index.tsx` file must export a component
-2. `index.tsx` file must expose all types downstream developers will need.
-
-This means our barrel module - `src/index.ts` - can ignore any unique choices made by a developer, just exporting the component and its exposed types from `index.tsx`.
-
-_Note: "strict" in quotes because that file is not auto-generated, so deviating from this convention is fine_
-### Avoiding `void` return type
-
-When a callback of some variety is provided to a component, it is common to see return type `void` a la:
-```typescript
-// bad
-export interface IComponentWithOnChangeProps {
-  onChange: (e: ChangeEvent) => void;
-}
-```
-
-This can be a bit restrictive in select circumstances, such as maybe some multi-used function etc.. Instead, we have opted to replace `void` with `unknown` when the return type is unused, which allows consuming developers to write functions in whatever method they wish without objections from subscribing to our explicit typings:
-
-```typescript
-// good
-export interface IComponentWithOnChangeProps {
-  onChange: (e: ChangeEvent) => unknown;
-}
-```
-
-### any
-
-We try to avoid `any` wherever possible. It is accepted only in the following circumstances:
-
-1. We are using a generic but wish to not force the users to pass said generic. This allows users to opt in to strict typing on callbacks etc, while not forcing them to use the generics. Let's take an example:
-```typescript
-export interface IDatum<T = any> {
-  id: ReactText;
-  label: string;
-  data: T;
-}
-```
-By defining a default value of `T = any`, now a user could rapidly develop like so:
-```typescript
-function handleDatumDidChange(val: IDatum) {
-  doSomething(val.id);                    // fully autocompletes
-  doAnotherThing(val.data.someProperty);  // autocompletes val.data, doesnt know about someProperty
-}
-```
-While also being able to subscribe to explicit typing:
-```typescript
-function handleDatumDidChange<IHasSomeProperty>(val: IDatum<IHasSomeProperty>) {
-  doSomething(val.id);                    // fully autocompletes
-  doAnotherThing(val.data.someProperty);  // fully autocompletes
-}
-```
-
-2. When returning `Promise` types, where it's important to note that we're returning a Promise but its value is unimportant, declaring `Promise<any>` is fine. However, in general, it'll still be better to use the type or the `T = any`, `Promise<T>` trick.
-
-3. When typing some kind of line wherein typing is extremely difficult, using `any` as a fallback can be nice to your consumers. This technique still gives semantic hints to what you intended, but allows the users to "do what works". Example:
-
-```typescript
-export interface IFancyComponentProps {
-  fancyProp: SVGPathElement | SomeOtherSVGElement | any;
-}
-```
-
-_Editor's Note: I ran into this case once in the `SegmentedImage`, but then I completely scrapped the approach I had taken. I suggest if you end up in this position, you consider if you should do the same._

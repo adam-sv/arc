@@ -1,0 +1,10 @@
+.ArcModal .ArcContextMenu {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: var(--ARC-box-shadow);
+
+  &-modalBackground {
+    background: transparent;
+  }
+}

@@ -1,0 +1,37 @@
+.ArcNav {
+  display: flex;
+
+  .ArcNav-Item {
+    padding: 8px 12px;
+    text-align: center;
+
+    &:not(&-selected) {
+      cursor: pointer;
+    }
+  }
+
+  &:not(&-tabs) .ArcNav-Item-selected {
+    color: var(--primary);
+
+    &:hover {
+      color: var(--primary-shade);
+    }
+  }
+
+  &-tabs {
+    width: 100%;
+
+    .ArcNav-Item {
+      flex: 1 1 auto;
+
+      &:not(&-selected) {
+        color: var(--primary-text);
+        background: var(--primary);
+    
+        &:hover {
+          background: var(--primary-shade);
+        }
+      }
+    }
+  }
+}

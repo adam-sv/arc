@@ -1,0 +1,182 @@
+.ArcLeftNavigation {
+  --LeftNavigation-background-color: var(--surface);
+  --LeftNavigation-adam-logo-color-1: var(--primary);
+  --LeftNavigation-adam-logo-color-2: var(--secondary);
+  --LeftNavigation-link-color: var(--surface-text);
+  --LeftNavigation-link-color-selected: var(--primary);
+  --LeftNavigation-hover-indicator-color: inherit;
+  // Toggle colors
+  --LeftNavigation-toggle-background-color: var(--primary);
+  --LeftNavigation-toggle-border-color: var(--border);
+  --LeftNavigation-toggle-box-shadow: var(--ARC-box-shadow);
+  --LeftNavigation-toggle-border-color-hover: var(--LeftNavigation-toggle-border-color);
+  --LeftNavigation-toggle-background-color-hover: var(--primary-hover);
+  --LeftNavigation-toggle-box-shadow-hover: var(--LeftNavigation-toggle-box-shadow);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--LeftNavigation-link-color);
+  user-select: none;
+  background-color: var(--LeftNavigation-background-color);
+  border-right: 1px solid var(--border);
+
+  &.is-open {
+    width: fit-content;
+  }
+
+  &-top {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    > .ARC-SVG-icon {
+      margin: auto;
+    }
+  }
+
+  &-topContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  &-links {
+    display: flex;
+    flex: 1 1 1px;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 1px;
+    margin: 1rem 0;
+    overflow-y: auto;
+  }
+
+  &-bottom {
+    flex: 0 0 auto;
+    padding: 2rem 0;
+  }
+
+  &-toggle {
+    position: absolute;
+    right: -0.8rem;
+    bottom: 4rem;
+    width: 1.4rem;
+    height: 5.5rem;
+    cursor: pointer;
+    background-color: var(--LeftNavigation-toggle-background-color);
+    border-color: var(--LeftNavigation-toggle-border-color);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1rem;
+    box-shadow: var(--LeftNavigation-toggle-box-shadow);
+
+    &:hover {
+      background-color: var(--LeftNavigation-toggle-background-color-hover);
+      border-color: var(--LeftNavigation-toggle-border-color-hover);
+      box-shadow: var(--LeftNavigation-toggle-box-shadow-hover);
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      width: 1px;
+      height: 80%;
+      content: '';
+      background-color: var(--LeftNavigation-toggle-border-color);
+    }
+
+    &::before {
+      left: 0.3rem;
+    }
+
+    &::after {
+      right: 0.3rem;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      background-color: var(--LeftNavigation-toggle-border-color-hover);
+    }
+  }
+
+  &-adamIcon {
+    width: 2.2rem;
+
+    --icon-color: var(--LeftNavigation-adam-logo-color-1);
+    --icon-color-2: var(--LeftNavigation-adam-logo-color-2);
+  }
+
+  &-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    color: var(--LeftNavigation-link-color);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-top: 7rem;
+    }
+
+    &Icon {
+      --icon-color: var(--LeftNavigation-link-color);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      margin: 0 2rem;
+    }
+
+    &Text {
+      display: none;
+      margin-right: 2rem;
+      line-height: 1;
+    }
+
+    .is-open & {
+      justify-content: start;
+
+      &Text {
+        display: inline;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0.25em;
+      content: '';
+    }
+
+    &:hover::before,
+    &:hover &Icon {
+      background-color: var(--LeftNavigation-hover-indicator-color);
+    }
+
+    &.is-selected &Icon {
+      --icon-color: var(--LeftNavigation-link-color-selected);
+    }
+
+    &.is-selected &Text {
+      color: var(--LeftNavigation-link-color-selected);
+    }
+
+    &.is-selected::before {
+      background-color: var(--LeftNavigation-link-color-selected);
+    }
+  }
+}

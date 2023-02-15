@@ -1,0 +1,48 @@
+.ArcFileInput {
+  .ArcInfoIcon {
+    top: 4px;
+  }
+
+  .file-container {
+    display: flex;
+    flex-direction: column;;
+  }
+
+  .file-descriptor {
+    display: flex;
+    flex: 1 1 1px;
+    align-items: center;
+    padding: 4px;
+    margin: -2px -4px;
+    border-radius: var(--ARC-border-radius);
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+
+    .file-name {
+      flex: 1 1 1px;
+    }
+
+    .ArcButton.delete {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 4px;
+      margin-right: 8px;
+      font-size: 12px;
+      line-height: 12px;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: var(--ARC-border-radius);
+    }
+  }
+
+  .hidden-input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}

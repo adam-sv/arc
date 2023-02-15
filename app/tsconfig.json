@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "jsx": "react-jsx",
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "*.config.js",
+    "*.config.ts"
+  ]
+}
