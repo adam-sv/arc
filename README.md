@@ -1,5 +1,5 @@
 # ARC
-[https://adam-sv.github.io/arc/](View Components on GitHub Pages)
+[View Components on GitHub Pages](https://adam-sv.github.io/arc/)
 
 ARC is a React component library, built on TypeScript, React, React-Router-DOM, and D3, offering a variety of input, layout, and visualization capabilities.
 
