@@ -1,7 +1,7 @@
 {
   "name": "@adam-sv/arc",
-  "version": "2.0.1",
-  "license": "PRIVATE",
+  "version": "2.0.2",
+  "license": "MIT",
   "type": "module",
   "files": [
     "dist-lib/",
