@@ -1,0 +1,23 @@
+.ArcInfoIcon {
+  z-index: 1; // necessary to keep above the native select which otherwise steals hover events
+  min-width: 18px;
+  max-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  max-height: 18px;
+  font-size: 12px;
+  line-height: normal;
+  color: var(--secondary-text);
+  text-align: center;
+  cursor: pointer;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.ArcInfoIcon-tooltip.ArcSurface {
+  width: max-content;
+  max-width: 400px;
+  color: var(--surface-text);
+  background: var(--surface);
+}

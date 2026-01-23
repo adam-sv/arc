@@ -1,0 +1,41 @@
+.ArcNav {
+  --ArcNav-primary: var(--primary);
+  --ArcNav-primary-contrast: var(--primary-contrast);
+  --ArcNav-hover: var(--primary-shade);
+
+  display: flex;
+
+  .ArcNav-Item {
+    padding: 8px 12px;
+    text-align: center;
+
+    &:not(&-selected) {
+      cursor: pointer;
+    }
+  }
+
+  &:not(&-tabs) .ArcNav-Item-selected {
+    color: var(--ArcNav-primary);
+
+    &:hover {
+      color: var(--ArcNav-hover);
+    }
+  }
+
+  &-tabs {
+    width: 100%;
+
+    .ArcNav-Item {
+      flex: 1 1 auto;
+
+      &:not(&-selected) {
+        color: var(--ArcNav-primary-contrast);
+        background: var(--ArcNav-primary);
+
+        &:hover {
+          background: var(--ArcNav-hover);
+        }
+      }
+    }
+  }
+}

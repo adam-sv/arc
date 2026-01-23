@@ -1,0 +1,7 @@
+# This is a bit awkward, wouldn't you say?
+# This `public/` folder is used to serve static assets by Vite.
+# During demo-app development, you will be loading all the source files statically to see in-browser, so we need those.
+# During publish, we do NOT want to send all those files out, so we must ignore them.
+# Therefore the .npmignore is copied over to `dist-lib` and overrides the `.gitignore`.
+.gitignore
+static/

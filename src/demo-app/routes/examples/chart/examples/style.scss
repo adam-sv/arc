@@ -1,0 +1,122 @@
+// BAR
+.ArcBarChart {
+  .horizontal-toggle {
+    align-self: center;
+    width: initial;
+  }
+
+  .category-0 {
+    fill: var(--danger);
+    stroke: black;
+  }
+
+  .category-1 {
+    fill: var(--warning);
+    stroke: black;
+  }
+
+  .category-2 {
+    fill: var(--success);
+    stroke: black;
+  }
+
+  .category-3 {
+    fill: var(--primary);
+    stroke: black;
+  }
+
+  .category-4 {
+    fill: var(--secondary);
+    stroke: black;
+  }
+}
+
+.Category-0 {
+  .ArcChart-Component-Legend-Symbol {
+    background-color: var(--danger);
+  }
+}
+
+.Category-1 {
+  .ArcChart-Component-Legend-Symbol {
+    background-color: var(--warning);
+  }
+}
+
+.Category-2 {
+  .ArcChart-Component-Legend-Symbol {
+    background-color: var(--success);
+  }
+}
+
+.Category-3 {
+  .ArcChart-Component-Legend-Symbol {
+    background-color: var(--primary);
+  }
+}
+
+.Category-4 {
+  .ArcChart-Component-Legend-Symbol {
+    background-color: var(--secondary);
+  }
+}
+
+.ArcBarChart-Bar {
+  stroke: white;
+}
+
+// GANTT
+// .ArcGanttChart {
+//   &-Bar {
+//     fill: var(--tertiary);
+//     stroke: blue;
+//   }
+
+//   &-Edges {
+//     path {
+//       fill: red
+//     }
+
+//     polygon {
+//       fill: red;
+//       stroke: red;
+//     }
+//   }
+// }
+
+// LINES
+.ChartBase-LineChart-Line1 {
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.ChartBase-LineChart-Line2 {
+  stroke: var(--tertiary);
+  stroke-width: 2;
+}
+
+.ArcLineChart-MousePosition {
+  .ChartBase-LineChart-Line1 {
+    fill: var(--primary);
+    stroke: var(--primary);
+  }
+
+  .ChartBase-LineChart-Line2 {
+    fill: var(--tertiary);
+    stroke: var(--tertiary);
+  }
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > * {
+    margin: 8px;
+  }
+
+  > .ArcDropdown {
+    width: 195px;
+  }
+}

@@ -1,0 +1,17 @@
+.ArcGanttChart {
+  &-Bar {
+    fill: var(--primary);
+    stroke: var(--border);
+  }
+
+  &-Edges {
+    path {
+      fill: black;
+    }
+
+    polygon {
+      fill: black;
+      stroke: black;
+    }
+  }
+}

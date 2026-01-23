@@ -1,0 +1,5 @@
+# See the .npmignore for notes
+*
+!.gitignore
+!.npmignore
+!favicon.ico

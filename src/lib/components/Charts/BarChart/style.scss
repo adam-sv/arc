@@ -1,0 +1,15 @@
+.ArcBarChart {
+  &-Bar {
+    fill: black;
+  }
+
+  &-Line {
+    stroke: black;
+    stroke-width: 1px;
+  }
+
+  &-DataPoint {
+    fill: black;
+    r: 3;
+  }
+}

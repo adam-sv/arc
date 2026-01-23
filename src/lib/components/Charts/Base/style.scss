@@ -1,0 +1,117 @@
+.ArcChart {
+  position: relative;
+  // adding the overflow hidden prevents a scrollbar flicker when doing resize events
+  // all the components control their own overflow so this makes sense
+  overflow: hidden;
+
+  .ChartSyncedScrollBar {
+    position: absolute;
+    overflow: auto; // TODO: is this right?
+  }
+}
+
+.ArcChart-Component {
+  position: absolute;
+  overflow: hidden;
+
+  &-content {
+    overflow: auto; // TODO: this is wrong
+    box-shadow: 0 0 0 1px var(--border);
+  }
+
+  &-SVGScrollWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    &-left,
+    &-right {
+      overflow-y: auto;
+    }
+
+    &-top,
+    &-bottom {
+      overflow-x: auto;
+    }
+  }
+
+  &-BorderSlashContainer {
+    pointer-events: none;
+  }
+
+  &-BorderSlash {
+    background: var(--border);
+  }
+
+  /* SCROLL BARS
+   * We never show real scroll bars. Therefore anything that isn't the ChartSyncedScrollBar has webkit-scrollbar hidden
+   */
+
+  &-content,
+  &-SVGScrollWrapper {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.ArcChart-SVGRenderer {
+  vertical-align: top;
+}
+
+.ArcChart-Component-Label {
+  position: absolute;
+  white-space: nowrap;
+  background-color: inherit;
+
+  &-top,
+  &-bottom {
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  &-top {
+    top: 0;
+  }
+
+  &-bottom {
+    bottom: 0;
+  }
+
+  &-left {
+    top: 50%;
+    left: 0;
+    transform: rotate(-90deg) translate(-50%);
+    transform-origin: top left;
+  }
+
+  &-right {
+    right: 0;
+    bottom: 50%;
+    transform: rotate(-90deg) translate(50%);
+    transform-origin: bottom right;
+  }
+}
+
+.ArcChart-Component-Legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  &-Key {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 3px;
+  }
+
+  &-Symbol {
+    width: 10px;
+    height: 10px;
+    margin-right: 1px;
+    margin-left: 4px;
+    border: 1px solid black;
+  }
+}

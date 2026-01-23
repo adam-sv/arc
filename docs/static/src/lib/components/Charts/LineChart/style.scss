@@ -1,0 +1,30 @@
+.ArcLineChart {
+  &-MousePosition {
+    line {
+      stroke: black;
+      stroke-dasharray: 5;
+      stroke-width: 1;
+    }
+
+    circle {
+      r: 4;
+    }
+  }
+
+  &-Path {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+  }
+
+  &-ForeignObject {
+    position: relative;
+    width: 1;
+    height: 1;
+    overflow: visible;
+
+    &-Panel {
+      position: absolute;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.ArcTable-Header th.multi-select-header {
+  // higher z-index needed to make selection panel
+  // float above other <th> elements, because of position: sticky
+  z-index: 100;
+}

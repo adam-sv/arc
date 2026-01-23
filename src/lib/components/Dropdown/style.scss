@@ -1,0 +1,98 @@
+.ArcInput.ArcDropdown {
+  --ArcDropdown-font-size: var(--ARC-sizing-fontSize);
+  --ArcInput-label-size: var(--ARC-sizing-labelSize);
+  --ArcDropdown-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcDropdown-verticalSpace: var(--ARC-sizing-verticalSpace);
+  // for our select to cover the whole space
+  position: relative;
+  padding: 0;
+  overflow: clip;
+
+  select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // its parent container doesnt include the arrow button or info icon
+    width: 100%;
+    height: 100%;
+    font-size: var(--ArcDropdown-font-size);
+    line-height: normal;
+    appearance: base-select;
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    opacity: 0;
+  }
+
+  /* container for <option>'s */
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  select::picker(select) {
+    inset: 3px -1px;
+    appearance: base-select;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--ARC-border-radius);
+  }
+
+  option {
+    padding: var(--ArcDropdown-verticalSpace) var(--ArcDropdown-horizontalSpace);
+    color: var(--surface-contrast);
+
+    &:hover,
+    &:focus,
+    &:checked {
+      background: var(--background);
+      border: none;
+      outline: none;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+    &::checkmark {
+      order: 1;
+      margin-left: auto;
+      font-family:
+        'ARC Material Symbols Outlined', 'Material Symbols Outlined', system-ui,
+        monospace, sans-serif;
+
+      /* unicode for checkmark */
+      content: '\e5ca';
+    }
+
+    &.placeholder {
+      display: none;
+    }
+
+    &:disabled {
+      font-style: italic;
+      color: var(--medium);
+      cursor: not-allowed;
+    }
+  }
+
+  /* From InputSkeleton */
+  .ArcInput-controls {
+    order: 1;
+    margin-left: 0;
+
+    .ArcButton-custom {
+      height: 100%;
+      pointer-events: none;
+      background: var(--light);
+      border-color: var(--border);
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 0;
+    }
+  }
+}
+
+.ArcDropdown-value-row {
+  width: 100%;
+  pointer-events: none;
+}

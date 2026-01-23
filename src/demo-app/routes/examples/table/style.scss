@@ -1,0 +1,17 @@
+// selected cell in SimpleTable
+.selected {
+  background-color: #9f9f9f;
+
+  &.highlighted {
+    background-color: #7e7e7e;
+  }
+}
+
+// selected row in RightClickTable
+.ArcTable-Row.selected {
+  background-color: #9f9f9f;
+
+  &.highlighted {
+    background-color: #7e7e7e;
+  }
+}

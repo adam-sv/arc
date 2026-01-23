@@ -1,0 +1,68 @@
+.ArcGraph {
+  background: var(--background);
+
+  &-Nodes {
+    &-selection-container {
+      fill: transparent;
+
+      &.move {
+        cursor: move;
+      }
+    }
+
+    &-selection {
+      fill: var(--primary-tint);
+      fill-opacity: 0.3;
+    }
+  }
+}
+
+.ArcGraph-Node {
+  --nodeBackgroundBase: var(--surface);
+  --nodeBorder: var(--border-shade);
+  --nodeBackground: transparent;
+
+  &.selected {
+    --nodeBorder: var(--primary);
+    --nodeBackground: rgb(var(--primary-components) / 30%);
+  }
+
+  text {
+    fill: var(--surface-text);
+  }
+
+  &-ContentBorder,
+  &-ConnectionTarget-Border {
+    fill: transparent;
+    stroke: var(--nodeBorder);
+  }
+
+  &-foreignObject {
+    overflow: auto;
+  }
+
+  &-background {
+    fill: var(--nodeBackground);
+    stroke: var(--nodeBorder);
+  }
+
+  &-background-bottom {
+    fill: var(--nodeBackgroundBase);
+    stroke: none;
+  }
+}
+
+.ArcGraph-Node-DefaultContentRenderer {
+  text {
+    font-size: 12px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+}
+
+// TODO: how to support debug nodes? Should they ship?
+.DEBUG_NODE {
+  fill: var(--warning);
+  fill-opacity: 0.3;
+  stroke: var(--danger);
+}

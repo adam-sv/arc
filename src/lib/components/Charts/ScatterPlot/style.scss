@@ -1,0 +1,10 @@
+.ScatterPlot {
+  .ScatterPlot-datum {
+    stroke: var(--border);
+
+    &.Active {
+      stroke: var(--primary);
+      stroke-width: 2px;
+    }
+  }
+}

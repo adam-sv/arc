@@ -1,0 +1,64 @@
+/*
+  NOTE: icon_names must be in alphabetical order to import correctly!
+
+  If import does not work, clicking on the link will tell you why with helpful hints
+
+  Download font by clicking src: url() in link below:
+  @import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@200..400,0..1&icon_names=accessibility_new,account_balance_wallet,add,add_circle,add_shopping_cart,arrow_back,arrow_circle_down,arrow_circle_left,arrow_circle_right,arrow_circle_up,arrow_downward,arrow_drop_down,arrow_drop_up,arrow_forward,arrow_insert,arrow_left,arrow_outward,arrow_right,arrow_upward,assignment,assignment_add,assignment_ind,assignment_late,assignment_turned_in,attach_file,bar_chart,block,bookmark,calendar_month,calendar_today,call,call_received,campaign,cancel,card_travel,chat,check,check_circle,chevron_left,chevron_right,close,cloud,cloud_download,cloud_upload,computer,content_copy,content_paste,create_new_folder,credit_card,dark_mode,delete,desktop_windows,do_not_disturb_on,docs,docs_add_on,donut_small,download,draft,east,edit,edit_square,error,event_available,exit_to_app,face,favorite,file_save,filter_list,folder,folder_check,folder_delete,grid_view,group,help,house,import_contacts,inbox,info,insert_chart,inventory,inventory_2,ios_share,keep,keyboard_arrow_down,keyboard_arrow_up,keyboard_double_arrow_down,keyboard_double_arrow_left,keyboard_double_arrow_right,keyboard_double_arrow_up,light_mode,link,list,list_alt,location_on,lock,lock_open,mail,map,menu,mobile,more_horiz,more_vert,north,north_east,north_west,notifications,notifications_active,notifications_off,open_in_new,pause,pause_circle,percent,person,person_add,person_check,person_remove,photo,photo_camera,photo_library,play_arrow,play_circle,refresh,remove,reorder,scan_delete,schedule,search,sell,send,settings,shopping_cart,sms,sort,south,south_east,south_west,speaker,star,stop,stop_circle,swap_horiz,swap_vert,table,tablet,token,toys_and_games,tune,undo,upload,view_column,view_timeline,visibility,visibility_off,volume_off,volume_up,warning,wb_incandescent,west,zoom_in,zoom_out,zoom_out_map&display=block';
+*/
+
+@font-face {
+  font-family: 'ARC Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 200 400;
+  src: url('./font.woff2') format('woff2');
+  font-display: block;
+}
+
+.MatIcon.material-symbols-outlined {
+  --MatIcon-size: 1.5rem;
+
+  display: inline-block;
+  font-size: var(--MatIcon-size);
+  font-style: normal;
+  font-weight: normal;
+  font-feature-settings: 'liga';
+  line-height: 1;
+  color: var(--icon-color);
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+
+  /* for icons downloaded in library */
+  &.ARC {
+    font-family:
+      'ARC Material Symbols Outlined',
+      'Material Symbols Outlined',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+  }
+
+  &.light {
+    font-weight: 300;
+  }
+
+  &.lighter {
+    font-weight: 200;
+  }
+
+  &.filled {
+    font-variation-settings: 'FILL' 1;
+  }
+}

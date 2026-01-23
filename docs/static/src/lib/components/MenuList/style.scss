@@ -1,0 +1,31 @@
+.ArcMenuList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .ArcMenuItem:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.ArcMenuItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 12px;
+  font-size: 14px;
+  color: var(--surface-text-color-contrast);
+  text-align: left;
+  cursor: pointer;
+  background: var(--surface);
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+}
+
+.ArcMenuItem-icon {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,12 @@
+.DefaultPinnedPanelStory {
+  padding: 200px;
+
+  > .ArcPanel > *:not(:first-child) {
+    margin-top: var(--ARC-sizing-verticalSpace);
+  }
+}
+
+.DefaultPinnedPanelStory-PinnedPanel {
+  width: 100px;
+  font-size: 10px;
+}

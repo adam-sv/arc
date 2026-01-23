@@ -1,0 +1,76 @@
+.ArcModal {
+  --ArcModal-fontSize: var(--ARC-sizing-fontSize);
+  --ArcModal-labelSize: var(--ARC-sizing-labelSize);
+  --ArcModal-horizontalSpace: var(--ARC-sizing-horizontalSpace);
+  --ArcModal-verticalSpace: var(--ARC-sizing-verticalSpace);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: var(--ARC-modal-background-rgba);
+  opacity: 0;
+  transition: opacity 0.3s;
+
+  .ArcModal-background-click-target {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: transparent;
+  }
+
+  &.ArcModal-open {
+    pointer-events: inherit;
+    opacity: 1;
+  }
+
+  .ArcModal-panel {
+    z-index: 1;
+    margin: auto;
+  }
+
+  &.ArcModal-anchor-right,
+  &.ArcModal-anchor-left {
+    &.ArcModal-open {
+      .ArcModal-panel {
+        transform: translateX(0%);
+      }
+    }
+
+    .ArcModal-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      animation-duration: 300ms;
+      animation-delay: 300ms;
+    }
+  }
+
+  &.ArcModal-anchor-right {
+    .ArcModal-panel {
+      right: 0;
+      border-radius: var(--ARC-border-radius) 0 0 var(--ARC-border-radius);
+      transform: translateX(100%);
+      animation-name: drawer-slide-in-from-right;
+    }
+  }
+
+  &.ArcModal-anchor-left {
+    .ArcModal-panel {
+      left: 0;
+      border-radius: 0 var(--ARC-border-radius) var(--ARC-border-radius) 0;
+      transform: translateX(-100%);
+      animation-name: drawer-slide-in-from-left;
+    }
+  }
+}

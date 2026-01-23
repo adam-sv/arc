@@ -1,0 +1,57 @@
+.ArcGrid {
+  stroke: var(--border);
+  stroke-width: 1px;
+
+  &-line {
+    stroke: var(--border);
+    stroke-linecap: round;
+  }
+}
+
+.SwimLaneAxis {
+  line {
+    stroke: var(--border);
+    stroke-width: 1px;
+  }
+
+  text {
+    font-size: 12px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+    fill: var(--surface-text);
+    stroke: transparent;
+
+    &.AngledText {
+      text-anchor: end;
+      transform: rotate(-45deg);
+      transform-origin: right center;
+      transform-box: fill-box;
+    }
+  }
+
+  &-left,
+  &-right {
+    text {
+      text-anchor: start;
+    }
+  }
+
+}
+
+.TickAxis {
+  line {
+    stroke: var(--border);
+    stroke-width: 1px;
+  }
+
+  text {
+    font-size: 8px;
+    dominant-baseline: middle;
+    text-anchor: end;
+    fill: var(--surface-text);
+    stroke: none;
+    transform: rotate(-45deg);
+    transform-origin: right center;
+    transform-box: fill-box;
+  }
+}

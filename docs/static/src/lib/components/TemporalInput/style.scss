@@ -1,0 +1,63 @@
+.ArcTemporalInput {
+  --ArcTemporalInput-picker-button-fill: var(--border);
+  --ArcTemporalInput-picker-button-stroke: var(--border-shade);
+
+  position: relative;
+
+  .ArcInput-label-row {
+    pointer-events: none;
+
+    label {
+      pointer-events: none;
+    }
+  }
+
+  .MatIcon-Calendar,
+  .MatIcon-Clock {
+    // Use text stroke if supported, otherwise fallback to color and text-shadow
+    @supports (-webkit-text-stroke: inherit) {
+      -webkit-text-stroke: 1px var(--ArcTemporalInput-picker-button-stroke);
+      -webkit-text-fill-color: var(--ArcTemporalInput-picker-button-fill);
+    }
+
+    @supports not (-webkit-text-stroke: inherit) {
+      color: var(--ArcTemporalInput-picker-button-stroke);
+      text-shadow: 1px 1px 3px var(--ArcTemporalInput-picker-button-fill);
+    }
+  }
+
+  .icon-wrapper {
+    position: absolute;
+    right: var(--ARC-sizing-horizontalSpace);
+    bottom: var(--ARC-sizing-verticalSpace);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    /* FF > v109 does not respect pseudo datepicker
+      https://bugzilla.mozilla.org/show_bug.cgi?id=1812397
+    */
+    @supports (-moz-transform: none) {
+      bottom: calc(var(--ARC-sizing-verticalSpace) - 4px);
+      height: 35px;
+      background-color: var(--ArcInput-background-color);
+    }
+  }
+
+  input {
+    font-family: var(--ARC-font-family);
+
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: var(--ARC-sizing-horizontalSpace);
+      bottom: var(--ARC-sizing-verticalSpace);
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      cursor: pointer;
+      background: transparent;
+    }
+  }
+}

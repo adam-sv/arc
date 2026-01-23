@@ -1,0 +1,25 @@
+.example-view .Example.parallel-axis-chart-example {
+  .content-row .code-container {
+    flex: 0 0 auto;
+  }
+
+  .ArcPanel.parallel-axis-chart-default-story-panel {
+    flex: 1 1 auto;
+    flex-direction: row;
+
+    .table-block {
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: column;
+      margin: 0 0 0 var(--ARC-sizing-horizontalSpace);
+
+      .ArcTable {
+        overflow-x: hidden;
+      }
+    }
+
+    .ArcParallelAxisChart {
+      min-width: 600px;
+    }
+  }
+}

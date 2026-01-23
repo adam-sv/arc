@@ -1,72 +1,78 @@
 {
-  "name": "@adam-sv/arc-monorepo",
-  "version": "1.1.1",
-  "private": true,
-  "files": [],
-  "module": "./lib/dist/arc.esm.js",
-  "main": "./lib/dist/index.js",
-  "typings": "./lib/dist/index.d.ts",
-  "scripts": {
-    "build:app": "cd app && yarn build; cd ..",
-    "build:lib": "cd lib && yarn build; cd ..",
-    "clean": "rm -rf lib/dist; rm -rf node_modules; rm -rf lib/node_modules; rm -rf app/dist; rm -rf app/node_modules;",
-    "install": "cd lib && yarn; cd ../app && yarn; cd .. && yarn install:lint",
-    "install:lint": "cd eslint-plugin && yarn; cd ../stylelint-plugin && yarn; cd ../prettier-plugin && yarn; cd ..",
-    "lint": "cd app && yarn lint; cd ../lib && yarn lint; cd..",
-    "typescript": "cd app && yarn typescript; cd ..",
-    "start": "cd app && yarn start; cd ..",
-    "test": "cd lib && yarn test; cd ../app && yarn test; cd .."
-  },
-  "workspaces": [
-    "lib",
-    "app",
-    "eslint-plugin",
-    "stylelint-plugin",
-    "prettier-plugin"
+  "name": "@adam-sv/arc",
+  "version": "2.0.1",
+  "license": "PRIVATE",
+  "type": "module",
+  "files": [
+    "dist-lib/",
+    "README.md"
   ],
-  "engines": {
-    "node": ">=10"
+  "main": "./dist-lib/adam-sv-arc.umd.cjs",
+  "module": "./dist-lib/adam-sv-arc.js",
+  "types": "./dist-lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist-lib/index.d.ts",
+        "default": "./dist-lib/adam-sv-arc.js"
+      },
+      "require": {
+        "types": "./dist-lib/index.d.ts",
+        "default": "./dist-lib/adam-sv-arc.umd.cjs"
+      }
+    }
   },
-  "stylelint": {
-    "extends": [
-      "@adam-sv/stylelint-plugin"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:@adam-sv/eslint-plugin/recommended"
-    ]
-  },
-  "prettier": "@adam-sv/prettier-plugin",
-  "devDependencies": {
-    "@adam-sv/eslint-plugin": "file:./eslint-plugin",
-    "@adam-sv/prettier-plugin": "file:./prettier-plugin",
-    "@adam-sv/stylelint-plugin": "file:./stylelint-plugin",
-    "@craco/craco": "^7.0.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/d3": "^6.2.0",
-    "@types/deep-equal": "^1.0.1",
-    "@types/node": "^18",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/react-router-dom": "^5",
-    "@types/react-transition-group": "^4",
-    "browserslist": "^4.18.1",
-    "craco-alias": "^3.0.1",
-    "react-dev-utils": "^12",
-    "react-scripts": "^5",
-    "sass": "^1.56.1",
-    "tslib": "^2.4.1",
-    "typescript": "^4.8.4"
+  "scripts": {
+    "build:app": "yarn copy:source-to-public && tsc -b && vite build",
+    "build:lib": "tsc -b && vite build --config vite.config.lib.ts && rm -rf dist-lib/demo-app && mv dist-lib/lib/* dist-lib && rm -rf dist-lib/lib",
+    "copy:source-to-public": "copyfiles \"./src/**/**\" ./public/static/",
+    "dev": "yarn copy:source-to-public && vite",
+    "format": "prettier . --write",
+    "lint": "eslint .",
+    "prepare": "yarn build:lib",
+    "prepare:npm": "npm build:lib",
+    "test": "yarn jest"
   },
   "dependencies": {
     "d3": "^6.3.1",
-    "react": "^18.0.2",
-    "react-dom": "^18.0.2",
-    "react-router-dom": "^5.0.1",
-    "react-transition-group": "^4.4.1",
+    "prism-solarized-dark": "^1.0.1",
+    "prismjs": "^1.29.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.8.0",
+    "react-simple-code-editor": "^0.11.0",
+    "uuid": "^10.0.0",
     "webcola": "^3.4.0"
-  }
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/d3": "^6.2.0",
+    "@types/deep-equal": "^1.0.1",
+    "@types/jest": "^29.5.14",
+    "@types/prismjs": "^1.26.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/react-router": "^5.1.20",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "browserslist": "^4.18.1",
+    "copyfiles": "^2.4.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react-dev-utils": "^12",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "sass": "^1.56.1",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4",
+    "vite-plugin-lib-inject-css": "^2.1.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "yarn": "1.22.19"
+  },
+  "packageManager": "yarn@1.22.19"
 }

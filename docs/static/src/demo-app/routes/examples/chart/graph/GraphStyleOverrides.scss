@@ -1,0 +1,14 @@
+.ChartBaseExample.Zoom {
+  .ArcGraph {
+    .ConnectionPort-CreateButton.three {
+      --buttonColor: var(--warning);
+      --backgroundColor: var(--surface);
+      --borderColor: var(--warning-shade);
+
+      &:hover {
+        --buttonColor: var(--warning-text);
+        --backgroundColor: var(--warning-tint);
+      }
+    }
+  }
+}

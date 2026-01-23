@@ -1,0 +1,80 @@
+.ArcPinnedPanel-Arrow {
+  --ArcPinnedPanel-Arrow-size: 12px;
+
+  $diagonal-arrow-inset: 2px;
+
+  position: absolute;
+  width: var(--ArcPinnedPanel-Arrow-size);
+  height: var(--ArcPinnedPanel-Arrow-size);
+  margin-top: 0;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  background: var(--border);
+
+  &.ArcPinnedPanel-Arrow-anchor-top {
+    top: 0;
+    left: 50%;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    transform: translate(-50%, -100%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-left {
+    top: 50%;
+    left: 0;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    transform: translate(-100%, -50%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-right {
+    top: 50%;
+    left: 100%;
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
+    transform: translate(0, -50%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-bottom {
+    top: 100%;
+    left: 50%;
+    clip-path: polygon(0 0, 50% 100%, 100% 0%);
+    transform: translate(-50%, 0);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-bottom-right {
+    top: 100%;
+    left: 100%;
+    margin-top: -1 * $diagonal-arrow-inset;
+    margin-left: -1 * $diagonal-arrow-inset;
+    clip-path: polygon(0 71%, 100% 100%, 71% 0%);
+    transform: translate(-50%, -50%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-bottom-left {
+    top: 100%;
+    left: 0;
+    margin-top: -1 * $diagonal-arrow-inset;
+    margin-left: $diagonal-arrow-inset;
+    clip-path: polygon(0 100%, 100% 71%, 29% 0);
+    transform: translate(-50%, -50%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-top-left {
+    top: 0;
+    left: 0;
+    margin-top: $diagonal-arrow-inset;
+    margin-left: $diagonal-arrow-inset;
+    clip-path: polygon(0 0%, 29% 100%, 100% 29%);
+    transform: translate(-50%, -50%);
+  }
+
+  &.ArcPinnedPanel-Arrow-anchor-top-right {
+    top: 0;
+    left: 100%;
+    margin-top: $diagonal-arrow-inset;
+    margin-left: -1 * $diagonal-arrow-inset;
+    clip-path: polygon(0 29%, 71% 100%, 100% 0%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.ArcPinnedPanel {
+  overflow: visible;
+}

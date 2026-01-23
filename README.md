@@ -1,92 +1,112 @@
 # ARC
+
+https://github.com/adam-sv/arc
 [View Components on GitHub Pages](https://adam-sv.github.io/arc/)
 
 ARC is a React component library, built on TypeScript, React, React-Router-DOM, and D3, offering a variety of input, layout, and visualization capabilities.
 
+ARC is built with Vite.
+- https://vitejs.dev/guide/
+
 ## Usage
-### Inside Project ADAM at Acubed
 
-Look for jobs on the ADAM team or at Acubed here: https://acubed.airbus.com/careers/ :)
+Import ARC styles by importing the library
+- this is more deterministic than having it import implicitly from a Component import
 
-### From npmjs.org
-
-We have published ARC to the public NPM under the @adam-sv organization.
-
-If you have configured a different registry, you can point the @adam-sv scope or the local folder's scope to public NPM via:
-
-```bash
-# Set local npm config
-npm config set registry https://registry.npmjs.org/
-# Set @adam-sv
-npm config set @adam-sv:registry https://registry.npmjs.org/
+```ts
+import '@adam-sv/arc';
 ```
 
-### CSS
+## Environment
 
-Include arc's CSS:
-```typescript
-import '@adam-sv/arc/dist/arc.css';
+We have a few things you can configure in ARC with the environment variable:
+
+- PUBLIC_URL
+  - If you will serve the UI at some subpath like `/ui/`, use this prefix
+  - This is relevant during GitHub/GitLab Pages for instance, where you are served at `/pages`
+- USE_HASH_ROUTER
+  - We allow this flag for when the routes get served behind a `/#/` block, meaning the server never sees this part of the path
+  - This is relevant during GitHub/GitLab Pages for instance,
+
+I think you have to prefix these with VITE\_, so in the `.env` file I have written:
+
+- VITE_PUBLIC_URL: '/'
+- VITE_USE_HASH_ROUTER:
+  - <empty>
+
+## Testing
+
+Today, only `jest` testing exists for ARC - no Cypress. Transpilation via `ts-jest` / `ts-node`.
+
+To test a component or logical piece, simply add a `jest` file `<test-name>.test.tsx` and write some tests. Find an example here: `src/lib/components/Accordion/accordion.test.tsx`.
+
+Guidance:
+
+- Always import from `@adam-sv/arc`, avoid relative paths
+  - It can be really tempting to use the relative paths, especially as your test file probably sits right beside the file itself, but the library setup is intimately related to how the code runs.
+  - Think of it as a preventative habit.
+- No CSS exists - try to avoid testing behaviors that rely on the CSS styles.
+  - It might be appropriate to use Cypress for these type of tests. We will set that up soon.
+  - Consider `src/lib/components/InfoIcon/infoicon.test.tsx`
+    - It wants to check if the tooltip is visible or not. The classnames are correct, BUT the `opacity: 0` style is never set since no CSS exists.
+    - Therefore, the test should check if the class names are correct or not as a proxy for checking if the opacity is set.
+
+### Testing Setup Notes
+
+Jest has been set up, following the guidance of:
+
+- https://dev.to/teyim/effortless-testing-setup-for-react-with-vite-typescript-jest-and-react-testing-library-1c48
+
+Some challenges were in the way:
+
+- TS configuration
+  - import {} from '@adam-sv/arc';
+- Mocking
+  - Web Workers
+  - DOMRect and other Web APIs
+- Barrel Module Lifecycle issues
+  - The utils double-barrel strategy seems to be involved. Consider `import { StringUtils } from '@adam-sv/arc';` - it imports from the barrel module which imports from elsewhere
+  - Ok, so then if a test says `import { StringUtils } from '..';` instead of from '@adam-sv/arc', bad things happen
+  - Advice: _import EVERYTHING from `'@adam-sv/arc'`_, do not use relative paths.
+
+Files involved in solving these problems include:
+
+- [Jest Config](./jest.config.js)
+- [Jest Setup](./src/jest.setup.ts)
+- Mocks
+  - [Worker Mock](./src/test-helpers/workerMock.ts)
+  - [DOMRect Mock](./src/test-helpers/DOMRectMock.ts)
+- Tests that were updated
+
+  - /src/lib/utils/tests/number.test.ts
+
+    - Before: `import { NumberUtils } from '..';`
+      - Result: `TypeError: Cannot read properties of undefined (reading 'capitalSnakeToCamelCase')` due to barrel module hell
+    - After: `import { NumberUtils } from '@adam-sv/arc';`
+      - Result: Works correctly, good barrel module resolution
+
+## Icons
+
+ARC includes several [Material Symbols Outlined icons](https://fonts.google.com/icons?icon.set=Material+Symbols+Outlined), using a custom font-family name (`ARC Material Symbols Outlined`) to avoid overrides from importing `Material Symbols Outlined` normally. The following variants are included:
+
+| Property | Options                                                     |
+| -------- | ----------------------------------------------------------- |
+| weight   | lighter (wght: 200), light (wght: 300), default (wght: 400) |
+| filled   | true (FILL: 1), default (FILL: 0)                           |
+
+To use an icon, render it via `<MatIcon.IconName weight='lighter' filled />`.
+
+For a complete list of available icons, see [MatIcon iconNameMap](src/lib/components/MatIcon/index.tsx).
+
+### Additional icons or variations
+
+If your app imports `Material Symbols Outlined`, check for any duplicates and remove those already provided by ARC (unless variants are different). If adding new icons with the same variants as ARC (`wght,FILL@200..400,0..1`), you may render them via `<MIcon name={icon_name} weight={weight} filled={true} />`.
+
+```css
+/* NOTE: variants (wght, FILL) and icon_names MUST be in alphabetical order.
+  Click the import URL for debugging hints.
+*/
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@200..400,0..1&icon_names=bolt&display=block';
 ```
 
-#### Theming
-
-To generate a theme, use the `generateThemeVariableString` function provided. `generateThemeVariableString` will output a formatted string that can be copy-pasted into your own css file.
-
-You can specify colors by passing an `IThemeProps` object (below). Any unspecifed colors
-will default to our in-house colors.
-
-Text colors are calculated automatically based on the color the text is displayed upon -
-right now the only options are white and black, as per industry usability guidelines.
-
-```
-export interface IThemeProps {
-  background?: string; // background color of the app
-  surface?: string; // color of surfaces, such as panels
-  border?: string; // color of borders found on UI components like buttons and forms
-  light?: string; // light grey (same Hue and Saturation of medium, higher Brightness)
-  medium?: string; // medium grey (doesn't need to be a pure grey, often tinted slightly blue)
-  dark?: string; // dark grey (same Hue and Saturation of medium, lower Brightness)
-  primary?: string; // main branding color (usually bold)
-  secondary?: string; // secondary branding color (often a bit softer than primary)
-  tertiary?: string; // branding color (usually an accent color, rarely used)
-  danger?: string; // color of errors, delete buttons, etc. (red)
-  warning?: string; // color of warning messages (orange)
-  success?: string; // color of sucess messages, submit buttons, etc. (green)
-}
-```
-
-### Using the theming in your component
-
-If you are writing a component, you should make sure to use the theming variables instead of hard-coding colors.
-
-For example, when making a border, instead of writing `border: 1px solid black`, write `border: 1px solid var(--border)`; then, when the theme switches, your component will automatically update.
-
-### Scoping theme variable overrides
-
-You may override theme variables on a scoped basis without affecting the overall theme you've generated.
-
-Example: 
-By default `--ArcInput-borderColor` is set to `--border-color`.
-
-If only special ArcInput borders should be set to another css variable, you may scope your override to just the `.ArcInput.special` css class:
-
-```
-.ArcInput.special {
-  --ArcInput-borderColor: var(--some-other-color-variable);
-}
-```
-
-
-## Components & Types
-
-Import components and types:
-```typescript
-import { Input } from '@adam-sv/arc';
-import type { IInputProps } from '@adam-sv/arc';
-```
-
-## Installation
-Install project from project root:
-```
-~/arc/ % yarn
-```
+See the [Material Symbols documentation](https://fonts.google.com/icons) for details on customizing icon imports
